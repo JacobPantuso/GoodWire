@@ -24,6 +24,17 @@ p {
     text-align: center;
 }
 
+.top-header h1 {
+    margin-bottom: 0px;
+}
+
+.top-header p {
+    margin-bottom: 10px;
+    margin-top: 5px;
+    color: lightgray;
+    font-size: 14px;
+}
+
 .top-header img {
     width: 50%;
     margin: auto;
