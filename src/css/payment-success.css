@@ -1,0 +1,111 @@
+html, body {
+    background-color: rgb(29, 29, 75);
+    font-family: 'Product Sans', sans-serif;
+    color: white;
+    height: 100%;
+}
+
+p {
+    font-size: 12px;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    height: 100%;
+    align-items: center;
+}
+
+.top-header {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.top-header img {
+    width: 50%;
+    margin: auto;
+}
+
+.order-placed-backdrop {
+    background-color: white;
+    width: 500px;
+    height: 400px;
+    border-radius: 30px;
+    margin-bottom: 10px;
+}
+
+.order-placed {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: black;
+    height: 100%;
+    padding: 10px;
+    gap: 10px;
+    font-size: 30px;
+}
+
+.order-placed h2 {
+    font-size: 25px;
+    margin-bottom: 0px;
+}
+
+.order-placed p {
+    font-size: 15px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    width: 80%;
+}
+
+.order-placed a {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.button-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.order-placed button {
+    background-color: rgb(29, 29, 75);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.order-placed button:hover {
+    background-color: rgb(0, 0, 0);
+    scale: 1.1;
+    transition: 0.5s;
+}
+
+@media screen and (max-width: 500px) {
+    .order-placed-backdrop {
+        width: 300px;
+        height: 300px;
+    }
+    .order-placed {
+        font-size: 20px;
+    }
+    .order-placed h2 {
+        font-size: 15px;
+    }
+    .order-placed p {
+        font-size: 10px;
+    }
+    .order-placed button {
+        padding: 7px;
+        font-size: 10px;
+    }
+}
