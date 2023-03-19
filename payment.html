@@ -14,9 +14,10 @@
 
 <body>
     <div class="container">
+        <img style="width: 10%" src="src/img/logo.png" alt="GoodWire Logo">
         <h1>Checkout</h1>
         <div class="payment-form">
-            <form class="checkout">
+            <form class="checkout" action="process-payment.html">
                 <div class="left-col">
                     <h3>Payment Information</h3>
                     <input class="card-num-name" id="card-num" type="text" placeholder="Card Number">
@@ -30,6 +31,27 @@
                 <hr>
                 <div class="right-col">
                     <h3>Order Summary</h3>
+                    <p>No products to display</p>
+                    <div class="totals">
+                        <div class="row">
+                            <h5>Sub-Total</h5>
+                            <p>$NA.NA</p>                     
+                        </div>
+                        <div class="row">
+                            <h5>Tax (13%)</h5>          
+                            <p>$NA.NA</p>                                       
+                        </div>
+                        <div class="row">
+                            <h5>Total</h5>        
+                            <p>$NA.NA</p>                                         
+                        </div>
+                    </div>
+                    <div class="btn-row">
+                        <a href="index.html">
+                            <button type="button"><i class="fa-solid fa-house"></i> Home</button>
+                        </a>
+                        <button type="submit"><i class="fa-solid fa-cart-shopping"></i> Place Order</button>
+                    </div>
                 </div>
             </form>
         </div>
