@@ -17,14 +17,14 @@
         <img style="width: 10%" src="src/img/logo.png" alt="GoodWire Logo">
         <h1>Checkout</h1>
         <div class="payment-form">
-            <form class="checkout" action="process-payment.html">
+            <form class="checkout">
                 <div class="left-col">
                     <h3>Payment Information</h3>
-                    <input class="card-num-name" id="card-num" type="text" placeholder="Card Number">
+                    <input class="card-num-name" id="card" type="text" placeholder="Card Number" maxlength="16">
                     <input class="card-num-name" id="name" type="text" placeholder="Name on Card">
                     <div class="date-cvv">
-                        <input class="card-details" id="expiry" type="text" placeholder="MM/YY">
-                        <input class="card-details" id="cvv" type="text" placeholder="CVV">
+                        <input class="card-details" id="date" type="text" placeholder="MM/YY" maxlength="5">
+                        <input class="card-details" id="cvv" type="text" placeholder="CVV" maxlength="3">
                     </div>
                     <p>This order will be shipped to the address you have on file.</p>
                 </div>
@@ -50,7 +50,7 @@
                         <a href="index.html">
                             <button type="button"><i class="fa-solid fa-house"></i> Home</button>
                         </a>
-                        <button type="submit"><i class="fa-solid fa-cart-shopping"></i> Place Order</button>
+                        <button type="button" onclick="validatePayment();"><i class="fa-solid fa-cart-shopping"></i> Place Order</button>
                     </div>
                 </div>
             </form>
@@ -58,6 +58,7 @@
         <div class="payment-types">
             <div class="payment-type-info">
                 <p>Payment Powered by GoodWire&trade;</p>
+                <p>By using this payment service you agree to our <a>Terms of Usage</a> and <a>Privacy Policies</a>.</p>
             </div>
             <div class="brands">
                 <i class="fa-brands fa-cc-visa"></i>
@@ -68,5 +69,15 @@
         </div>
     </div>
 </body>
-
+<script src="src/js/payment.js"></script>
+<script>
+    document.getElementById('date').addEventListener('keyup', function() {
+        // If the user has entered 2 digits, add a slash but if the user deletes the slash, remove it
+        if (this.value.length == 2 && this.value.indexOf('/') == -1) {
+            this.value = this.value + '/';
+        } else if (this.value.length == 2 && this.value.indexOf('/') != -1) {
+            this.value = this.value.substring(0, 1);
+        }
+    });
+</script>
 </html>

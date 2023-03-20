@@ -34,6 +34,12 @@ html, body {
     margin-bottom: 5px;
 }
 
+.payment-type-info a {
+    color: rgb(189, 189, 254);
+    text-decoration: none;
+    cursor: pointer;
+}
+
 form {
     color: black;
     display: flex;
