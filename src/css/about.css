@@ -1,0 +1,112 @@
+body {
+    margin: 0px;
+    font-family: 'Product Sans', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: #3D5465;
+}
+
+.upper-content {
+    display: flex;
+    flex-direction: column;
+    background-color: #3D5465;
+    color: white;
+    border-radius: 0px 0px 15px 15px;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: auto;
+    margin-top: 20px;
+    padding-right: 20px;
+    gap: 20px;  
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+    padding: 10px;
+}
+
+.main-content h1 {
+    font-size: 44px;
+    margin-bottom: 0px;
+}
+
+.main-content p {
+    font-size: 18px;
+    margin-top: 0px;
+}
+
+.main-content img {
+    width: 320px;
+    height: 320px;
+}
+
+.learn-more {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.learn-more p {
+    margin-bottom: 0px;
+    font-size: 15px;
+}
+
+.learn-more i {
+    font-size: 20px;
+}
+
+.lower-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin: 40px;
+    gap: 80px;
+}
+/* Card Design */
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    box-shadow: 4px 6px 10px 7px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    width: 300px;
+    height: 300px;
+}
+
+.card-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.card-button:hover {
+    cursor: pointer;
+    color: #3D5465;
+}

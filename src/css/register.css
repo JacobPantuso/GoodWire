@@ -1,0 +1,26 @@
+.input.names {
+    display: flex;
+    flex-direction: row;
+}
+
+.input.phone {
+    width: 40%;
+}
+
+.first, .last {
+    display: flex;
+    flex-direction: column;
+}
+
+#pass {
+    display: none;
+}
+
+.pass-requirements {
+    margin-bottom: 0px;
+}
+
+ul {
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
