@@ -59,3 +59,21 @@ function myFunction(element) {
         }
     }
   }
+
+
+window.onload = function() {
+    // if the href includes account.html
+    if (window.location.href.includes('account.html')) {
+        if (sessionStorage.getItem('name') == null) {
+            window.location.href = 'login.html';
+        }
+    }
+    if (window.location.href.includes("login.html")) {
+        if (sessionStorage.getItem('name') != null) {
+            window.location.href = 'account.html';
+        }
+    }
+    if (sessionStorage.getItem('name') != null) {
+        document.getElementById('account').innerHTML = sessionStorage.getItem('name');
+    }
+}

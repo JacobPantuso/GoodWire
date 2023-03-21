@@ -1,3 +1,10 @@
+if (localStorage.getItem('accounts') === null) {
+    accounts = []
+    localStorage.setItem('accounts', JSON.stringify([]));
+} else {
+    accounts = JSON.parse(localStorage.getItem('accounts'));
+}
+
 class Account {
     constructor(name, email, password, phone) {
         this.name = name;
@@ -11,6 +18,29 @@ class Account {
         this.province = '';
         this.postal_code = '';
         this.country = '';
+        if (accounts.find(account => account.email === email)) {
+            accounts.splice(accounts.findIndex(account => account.email === email), 1);
+            accounts.push(this);
+        } else {
+            accounts.push(this);
+        }
+        localStorage.setItem('accounts', JSON.stringify(accounts));
+    }
+
+    getName() {
+        return this.name;
+    }
+
+    getEmail() {
+        return this.email;
+    }
+
+    getPassword() {
+        return this.password;
+    }
+
+    getPhone() {
+        return this.phone;
     }
 
     changePassword(newPassword) {
@@ -30,6 +60,10 @@ class Account {
         this.orders.push(order);
     }
 
+}
+
+function findAccount(email) {
+    return accounts.find(account => account.email === email);
 }
 
 function validateRegister() {
@@ -56,11 +90,65 @@ function validateRegister() {
     } else { flag++; }
 
     if (flag == 5) {
-        storeObject(first_name + ' ' + last_name, email, password, phone);
-        window.location.href = 'account.html';
+        getAccount(email).then(function(doc) {
+            if (doc.error) {
+                storeAccount(first_name + ' ' + last_name, email, password, phone);
+                window.location.href = 'login.html';
+            } else {
+                document.getElementById('description').innerHTML = 'An account with this email already exists.';
+                document.getElementById('description').style.color = 'red';
+            }
+          });
     }
 }
 
 function login() {
-    
+    email = document.getElementById('email').value;
+    password = document.getElementById('password').value;
+    getAccount(email).then(function(doc) {
+        if (doc.error) {
+            document.getElementById('description').innerHTML = 'The credentials you entered are incorrect. Please try again.';
+        } else if (doc._id != email) {
+            document.getElementById('description').innerHTML = 'The credentials you entered are incorrect. Please try again.';
+            document.getElementById('description').style.color = 'red';
+        } else {
+            if (doc.password != password) {
+                document.getElementById('description').innerHTML = 'The credentials you entered are incorrect. Please try again.';
+                document.getElementById('description').style.color = 'red';
+            } else {
+                sessionStorage.setItem('name', doc.name);
+                account = new Account(doc.name, doc._id, doc.password, doc.phone);
+                window.location.href = 'account.html';
+            }
+        }
+      }).catch(function(err) {
+        console.error(err); // handle the error
+      });
+}
+
+function isAuth(code, email) {
+    console.log(email);
+    user_code = document.getElementById('code').value;
+    if (user_code == code) {
+        document.getElementById('password').style.display = 'block';
+        document.getElementById("code").style.display = "none";
+        document.getElementById("email-label").innerHTML = "New Password";
+        document.getElementById('description').style.color = 'black';
+        document.getElementById('description').innerHTML = 'Create your new password below.';
+        document.getElementsByClassName("btm-row")[0].innerHTML = "<button type='button' onclick='resetPassword(\"" + email + "\")'>Reset Password</button>";
+    } else {
+        document.getElementById('description').innerHTML = 'The code you entered is incorrect. Please try again.';
+        document.getElementById('description').style.color = 'red';
+    }
+}
+
+function resetPassword(email) {
+    email = document.getElementById('email').value;
+    password = document.getElementById('password').value;
+    getAccount(email).then(function(doc) {
+        account = new Account(doc.name, doc._id, password, doc.phone);
+        doc.password = password;
+        updateAccount(doc);
+    });
+    window.location.href = 'login.html';
 }

@@ -170,3 +170,21 @@ a, a:visited, a:hover, a:active {
   .show {
     display: block;
   }
+
+  .footer {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(20, 20, 53);
+    height: 50%;
+    width: 100%;
+  }
+
+  .logo.bottom {
+    padding: 30px;
+  }
+
+  .copyright {
+    font-size: 10px;
+    color: darkgray;
+    margin: auto;
+  }
