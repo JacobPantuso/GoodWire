@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/f7c8be4779.js" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="src/js/index.js"></script>
+        <link rel="icon" href="src/img/logo.png" type="image/png">
+        <link rel="stylesheet" href="src/css/index.css">
+        <link rel="stylesheet" href="src/css/login.css">
+        <link rel="stylesheet" href="src/css/register.css">
+        <title>GoodWire | Account</title>
+    </head>
+<body>
+    <div class="index">
+        <div class="navbar">
+            <div class="navbar-top">
+                <div class="upper-nav-content">
+                    <a href="track-order.html">Track an Order</a>
+                    <a>Français</a>
+                    <a id="region">Change Region</a>
+                </div>
+                <div class="lower-nav-content">
+                    <a href="index.html"><div class="logo">
+                        <img src="src/img/logo.png" alt="logo">
+                        <div class="logo-text">
+                            <h2>GoodWire</h1>
+                            <p>New or used, we're making an impact</p>
+                        </div>
+                    </div></a>
+                    <div class="right-content">
+                        <div class="cart">
+                            <i class="fa-solid fa-shopping-cart"></i>
+                            <a>Cart</a>
+                        </div>
+                        <div class="account">
+                            <i class="fa-solid fa-user"></i>
+                            <a id="account" href="login.html">Account</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="navbar-bottom">
+                <div class="links">
+                    <div class="dropdown">
+                        <button class="dropbtn" onclick="myFunction('products');">Products
+                          <i id="products-caret" class="fa-solid fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content" id="products">
+                          <a href="#">Link 1</a>
+                          <a href="#">Link 2</a>
+                          <a href="#">Link 3</a>
+                        </div>
+                    </div> 
+                    <div class="dropdown">
+                        <button class="dropbtn" onclick="myFunction('brands');">Brands
+                          <i id="brands-caret" class="fa-solid fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content" id="brands">
+                          <a href="#">Link 1</a>
+                          <a href="#">Link 2</a>
+                          <a href="#">Link 3</a>
+                        </div>
+                    </div> 
+                    <div class="dropdown">
+                        <button class="dropbtn" onclick="myFunction('services');">Services
+                          <i id="services-caret" class="fa-solid fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content" id="services">
+                          <a href="#">Link 1</a>
+                          <a href="#">Link 2</a>
+                          <a href="#">Link 3</a>
+                        </div>
+                    </div> 
+                    <div class="dropdown">
+                        <button class="dropbtn" onclick="myFunction('support');">Support
+                          <i id="support-caret" class="fa-solid fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content" id="support">
+                          <a href="#">Link 1</a>
+                          <a href="#">Link 2</a>
+                          <a href="#">Link 3</a>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <div class="login-form">
+            <div class="login">
+                    <h1>Order Tracking</h1>
+                    <p id="description">Enter the information requested below to create your account</p>
+                    <div class="inputs">
+                        <div class="input names">
+                            <div class="first">
+                                <label for="first-name">First Name</label>
+                                <input type="text" name="first-name" id="first-name" placeholder="Enter your first name">
+                            </div>
+                            <div class="last">
+                                <label for="last-name">Last Name</label>
+                                <input type="text" name="last-name" id="last-name" placeholder="Enter your last name">
+                            </div>
+                        </div>
+                        <div class="input">
+                            <label for="email">Email Address</label>
+                            <input type="email" name="email" id="email" placeholder="Enter your email">
+                        </div>
+                        <div class="input">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="password" placeholder="Enter your password">
+                            <div id="pass">
+                                <p class="pass-requirements">Password must contain:</p>
+                                <ul>
+                                    <li id="req1">At least 8 characters</li>
+                                    <li id="req2">At least 1 uppercase letter</li>
+                                    <li id="req3">At least 1 lowercase letter</li>
+                                    <li id="req4">At least 1 number</li>
+                                    <li id="req5">At least 1 special character</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="input phone">
+                            <label for="phone">Phone Number</label>
+                            <input type="phone" name="phone" id="phone" placeholder="Phone Number" maxlength="10">
+                        </div>
+                    </div>
+                    <div class="btm-row">
+                        <button type="button" onclick="validateRegister()">Register</button>
+                    </div>
+                </form>
+                <div class="no-acc">
+                    <h1>Member Features</h1>
+                    <p>Members will have access to:</p>
+                    <div class="why">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <div class="why-text">
+                            <h3>Track your orders</h2>
+                            <p>View your order history and track your orders</p>
+                        </div>
+                    </div>
+                    <div class="why">
+                        <i class="fa-solid fa-credit-card"></i>
+                        <div class="why-text">
+                            <h3>Manage your payments</h2>
+                            <p>View your payment history and manage your payment methods</p>
+                        </div>
+                    </div>
+                    <div class="why">
+                        <i class="fa-solid fa-shopping-cart"></i>
+                        <div class="why-text">
+                            <h3>Fast checkout</h2>
+                            <p>Your information is already prepared for a speedy checkout</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="src/js/bundle.js"></script>
+<script src="src/js/account.js"></script>
+</html>

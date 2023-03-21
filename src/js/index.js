@@ -1,6 +1,7 @@
-function myFunction(element) {
+import * as account from './account.js';
+
+function openDropdown(element) {
     document.getElementById(element).classList.toggle("show");
-    // change the arrow to fa-solid fa-caret-up where the icon has id of element-caret
     var caret = document.getElementById(element + "-caret");
     if (caret.classList.contains('fa-caret-down')) {
         caret.classList.remove('fa-caret-down');
@@ -12,10 +13,6 @@ function myFunction(element) {
     var products = document.getElementById("products");
     if (products.classList.contains('show') && element != "products") {
         products.classList.remove('show');
-    }
-    var brands = document.getElementById("brands");
-    if (brands.classList.contains('show') && element != "brands") {
-        brands.classList.remove('show');
     }
     var services = document.getElementById("services");
     if (services.classList.contains('show') && element != "services") {
@@ -36,13 +33,6 @@ function myFunction(element) {
             productsCaret.classList.remove('fa-caret-left');
             productsCaret.classList.add('fa-caret-down');
         }
-        var brands = document.getElementById("brands");
-        var brandsCaret = document.getElementById("brands-caret");
-        if (brands.classList.contains('show')) {
-            brands.classList.remove('show');
-            brandsCaret.classList.remove('fa-caret-left');
-            brandsCaret.classList.add('fa-caret-down');
-        }
         var services = document.getElementById("services");
         var servicesCaret = document.getElementById("services-caret");
         if (services.classList.contains('show')) {
@@ -62,10 +52,14 @@ function myFunction(element) {
 
 
 window.onload = function() {
-    // if the href includes account.html
+    account.receiveStorage();
     if (window.location.href.includes('account.html')) {
         if (sessionStorage.getItem('name') == null) {
             window.location.href = 'login.html';
+        } else {
+            document.getElementById("username").innerHTML = account.getAccountByName(sessionStorage.getItem('name')).name;
+            var res = account.getAccountByName(sessionStorage.getItem('name'));
+            document.getElementById('points').innerHTML = account.getAccountByName(sessionStorage.getItem('name')).points + " points";
         }
     }
     if (window.location.href.includes("login.html")) {
@@ -75,5 +69,47 @@ window.onload = function() {
     }
     if (sessionStorage.getItem('name') != null) {
         document.getElementById('account').innerHTML = sessionStorage.getItem('name');
+        document.getElementById('region').innerHTML = "Logout";
+        document.getElementById('region').addEventListener('click', function() {
+            sessionStorage.removeItem('name');
+            window.location.href = 'login.html';
+        });
     }
+}
+
+window.onbeforeunload = function() {
+    account.updateStorage();
+}
+
+/* Navigation Event Listeners */
+document.getElementById('products-btn').addEventListener('click', function() {
+    openDropdown('products');
+});
+document.getElementById('services-btn').addEventListener('click', function() {
+    openDropdown('services');
+});
+document.getElementById('support-btn').addEventListener('click', function() {
+    openDropdown('support');
+});
+
+/* Account Event Listeners */
+if (window.location.href.includes("login.html")) {
+    document.getElementById('sign-in').addEventListener('click', function() {
+        account.login();
+    });
+}
+
+if (window.location.href.includes("register.html")) {
+    document.getElementById('register').addEventListener('click', function() {
+        account.validateRegister();
+    });
+}
+
+if (window.location.href.includes("forgot-password.html")) {
+    document.getElementById('authenticate').addEventListener('click', function() {
+        account.isAuth(localStorage.getItem('auth-code'));
+    });
+    document.getElementById('reset-password').addEventListener('click', function() {
+        account.resetPassword(document.getElementById('email').value);
+    });
 }

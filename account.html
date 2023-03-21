@@ -16,9 +16,9 @@
         <div class="navbar">
             <div class="navbar-top">
                 <div class="upper-nav-content">
-                    <a>Track an Order</a>
+                    <a href="track-order.html">Track an Order</a>
                     <a>Français</a>
-                    <a>Change Region</a>
+                    <a id="region">Change Region</a>
                 </div>
                 <div class="lower-nav-content">
                     <a href="index.html"><div class="logo">
@@ -43,7 +43,7 @@
             <div class="navbar-bottom">
                 <div class="links">
                     <div class="dropdown">
-                        <button class="dropbtn" onclick="myFunction('products');">Products
+                        <button class="dropbtn" id="products-btn">Products
                           <i id="products-caret" class="fa-solid fa-caret-down"></i>
                         </button>
                         <div class="dropdown-content" id="products">
@@ -53,17 +53,7 @@
                         </div>
                     </div> 
                     <div class="dropdown">
-                        <button class="dropbtn" onclick="myFunction('brands');">Brands
-                          <i id="brands-caret" class="fa-solid fa-caret-down"></i>
-                        </button>
-                        <div class="dropdown-content" id="brands">
-                          <a href="#">Link 1</a>
-                          <a href="#">Link 2</a>
-                          <a href="#">Link 3</a>
-                        </div>
-                    </div> 
-                    <div class="dropdown">
-                        <button class="dropbtn" onclick="myFunction('services');">Services
+                        <button class="dropbtn" id="services-btn">Services
                           <i id="services-caret" class="fa-solid fa-caret-down"></i>
                         </button>
                         <div class="dropdown-content" id="services">
@@ -73,7 +63,7 @@
                         </div>
                     </div> 
                     <div class="dropdown">
-                        <button class="dropbtn" onclick="myFunction('support');">Support
+                        <button class="dropbtn" id="support-btn">Support
                           <i id="support-caret" class="fa-solid fa-caret-down"></i>
                         </button>
                         <div class="dropdown-content" id="support">
@@ -92,10 +82,10 @@
                         <img src="src/img/logo.png" alt="profile">
                     </div>
                     <div class="profile-info">
-                        <h2>Member Member</h2>
-                        <p>Member Since 2022</p>
+                        <h2 id="username">Member Member</h2>
+                        <p>Member Since 2023</p>
                         <img src="https://cdn-icons-png.flaticon.com/512/5957/5957125.png">
-                        <h4>18,986 reward points</h4>
+                        <h4 id="points">18,986 reward points</h4>
                     </div>
                 </div>
             </div>
@@ -103,5 +93,6 @@
     </div>
 </body>
 <script src="src/js/bundle.js"></script>
-<script type="text/javascript" src="src/js/index.js"></script>
+<script type="module" src="src/js/index.js"></script>
+<script type="module" src="src/js/account.js"></script>
 </html>
