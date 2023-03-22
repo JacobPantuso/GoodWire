@@ -1,7 +1,8 @@
+
 .account-content {
     display: flex;
     flex-direction: column;
-    padding: 15px 50px 15px 50px;
+    padding: 15px 200px 15px 200px;
     color: black;
 }
 
@@ -65,4 +66,55 @@
 .profile-info img {
     width: 50px;
     margin-bottom: 0px;
+}
+
+.quick-access {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.quick-access h2 {
+    margin-bottom: 2px;
+}
+
+.quick-access p {
+    margin-top: 0px;
+}
+
+.card-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.access-card {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    border-radius: 10px;
+    border: 1px rgb(187, 186, 186) solid;
+    transition: 0.33s;
+}
+
+.access-card:hover {
+    scale: 1.05;
+    box-shadow: 0px 5px 4px -1px #6a6a6a;
+    cursor: pointer;
+}
+
+.access-content {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+
+#card-icon {
+    font-size: 30px;
+    color: rgb(29, 29, 75);
+}
+
+.access-content:hover a {
+    color: rgb(70, 70, 216);
 }

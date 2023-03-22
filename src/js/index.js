@@ -75,6 +75,28 @@ window.onload = function() {
             window.location.href = 'login.html';
         });
     }
+
+    if (window.location.href.includes("order-history.html")) {
+        document.getElementById('order-history-description').innerHTML = "Hey " + sessionStorage.getItem('name') + ", here are your recent orders."
+        var res = account.getAccountByName(sessionStorage.getItem('name'));
+        var numOfOrders = res.getOrders().length;
+        var numOfOrdersHTML = document.getElementById('num-of-orders')
+        if (numOfOrders == 0) {
+            numOfOrdersHTML.innerHTML = "There are no orders to display"
+        } else if (numOfOrders == 1) {
+            numOfOrdersHTML.innerHTML = "There is one order to display"
+        } else {
+            numOfOrdersHTML.innerHTML = "There are " + numOfOrders + " to display"
+        }
+        if (res.getOrders().length != 0) {
+            var orders = res.getOrders()
+            for (var i = 0; i < orders.length; i ++) {
+
+            }
+        } else {
+            //document.getElementById('orders').innerHTML = "<p>There are no orders to display</p>";
+        }
+    }
 }
 
 window.onbeforeunload = function() {
@@ -111,5 +133,17 @@ if (window.location.href.includes("forgot-password.html")) {
     });
     document.getElementById('reset-password').addEventListener('click', function() {
         account.resetPassword(document.getElementById('email').value);
+    });
+}
+
+if (window.location.href.includes("account.html")) {
+    document.getElementById('order-history').addEventListener('click', function() {
+        window.location.href = "order-history.html";
+    });
+    document.getElementById('payment-info').addEventListener('click', function() {
+        window.location.href = "payment-information.html";
+    });
+    document.getElementById('personal-info').addEventListener('click', function() {
+        window.location.href = "personal-information.html";
     });
 }
