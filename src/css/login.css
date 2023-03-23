@@ -154,3 +154,45 @@ svg {
     }
    }
    
+
+.order-tracking-form.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: rgb(29, 29, 75);
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(65, 65, 124);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: rgb(65, 65, 225);
+    border-radius: 10px;
+}
+
+.tracking-input {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    flex-direction: column;
+    width: 20%;
+}
+
+.tracking-input input {
+    padding: 10px;
+    border: 1px solid rgb(145, 145, 185);
+    border-radius: 5px;
+    width: 60%;
+    text-align: center;
+    transition: 0.3s;
+}

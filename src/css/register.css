@@ -24,3 +24,10 @@ ul {
     margin-top: 0px;
     margin-bottom: 5px;
 }
+
+.order-tracking-form.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: rgb(29, 29, 75);
+}

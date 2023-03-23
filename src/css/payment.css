@@ -134,3 +134,36 @@ form .right-col {
     scale: 1.1;
     cursor: pointer;
 }
+
+.shipping {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    gap: 5px;
+}
+
+#city {
+    margin: auto;
+}
+
+#street-num {
+    width: 26%;
+}
+
+#street-name {
+    width: 74%;
+}
+
+#postal {
+    width: 60%;
+}
+
+#province {
+    width: 40%;
+}

@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet">
-        <script src="https://kit.fontawesome.com/f7c8be4779.js" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="src/js/index.js"></script>
-        <link rel="icon" href="src/img/logo.png" type="image/png">
-        <link rel="stylesheet" href="src/css/index.css">
-        <link rel="stylesheet" href="src/css/login.css">
-        <title>GoodWire | Account</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f7c8be4779.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="src/img/logo.png" type="image/png">
+    <link rel="stylesheet" href="src/css/index.css">
+    <link rel="stylesheet" href="src/css/cart.css">
+    <title>GoodWire | Cart</title>
+</head>
 <body>
     <div class="index">
         <div class="navbar">
@@ -73,22 +72,49 @@
                 </div>
             </div>
         </div>
-        <div class="order-tracking-form container">
-            <div class="order-tracking-form content">
-                    <h1>Order Tracking</h1>
-                    <p id="description">Enter your order number below to track your order</p>
-                    <div class="tracking-input">
-                        <label for="order-number">Order Number</label>
-                        <input type="text" name="order-number" id="order-number" placeholder="Enter your order number">
-                    </div>
-                    <div class="btm-row">
-                        <button type="button" onclick="validateRegister()">Track Order</button>
-                    </div>
-                </form>
+        <div id="cc" class="cart-container">
+            <div class="cart-content">
+                <h1>Your Cart</h1>
+                <div class="cart-products">
+                    <p>No products to display</p>
+                </div>
+            </div>
+            <div class="cart-summary">
+                <h1>Order Summary</h1>
+                <div class="cart-row">
+                    <p>Subtotal</p>
+                    <p id="subtotal">$0.00</p>
+                </div>
+                <div class="cart-row">
+                    <p>Discounts</p>
+                    <p id="discount">$0.00</p>
+                </div>
+                <div class="cart-row">
+                    <p>Shipping</p>
+                    <p id="shipping">Free</p>
+                </div>
+                <div class="cart-row">
+                    <p>Estimated Taxes</p>
+                    <p id="taxes">$0.00</p>
+                </div>
+                <hr>
+                <div class="cart-row">
+                    <p>Estimated Total</p>
+                    <p id="total">$0.00</p>
+                </div>
+                <button id="checkout-btn" class="checkout">Continue to Payment</button>
+            </div>
+        </div>
+        <div id="cag" class="continue-as-guest">
+            <h1>Continue as Guest?</h1>
+            <p>You aren't signed in which means you won't get the benefits that members get with this purchase. Do you want to continue as guest or log-in now?</p>
+            <div class="btn-row">
+                <button id="login-btn" class="login">Log In</button>
+                <button id="guest-btn" class="guest">Continue as Guest</button>
             </div>
         </div>
     </div>
 </body>
-<script src="src/js/bundle.js"></script>
-<script src="src/js/account.js"></script>
+<script type="module" src="src/js/index.js"></script>
+<script type="module" src="src/js/account.js"></script>
 </html>
