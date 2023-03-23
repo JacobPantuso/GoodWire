@@ -26,7 +26,19 @@
                         <input class="card-details" id="date" type="text" placeholder="MM/YY" maxlength="5">
                         <input class="card-details" id="cvv" type="text" placeholder="CVV" maxlength="3">
                     </div>
-                    <p>This order will be shipped to the address you have on file.</p>
+                    <p id="loggedIn">This order will be shipped to the address you have on file.</p>
+                    <div id="shipping-info" class="shipping">
+                        <h3>Shipping Information</h3>
+                        <div class="row">
+                            <input id="street-num" type="text"  placeholder="Street #">
+                            <input id="street-name" type="text"  placeholder="Street Name">
+                        </div>
+                        <input id="city" type="text"  placeholder="City">
+                        <div class="row">
+                            <input id="postal" type="text"  placeholder="Postal Code">
+                            <input id="province" type="text"  placeholder="Province">
+                        </div>
+                    </div>
                 </div>
                 <hr>
                 <div class="right-col">
