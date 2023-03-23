@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/f7c8be4779.js" crossorigin="anonymous"></script>
+        <link rel="icon" href="src/img/logo.png" type="image/png">
+        <link rel="stylesheet" href="src/css/index.css">
+        <link rel="stylesheet" href="src/css/account.css">
+        <link rel="stylesheet" href="src/css/order-history.css">
+        <link rel="stylesheet" href="src/css/personal-information.css">
+        <title>GoodWire | Account</title>
+    </head>
+    <body>
+    <div class="index">
+        <div class="navbar">
+            <div class="navbar-top">
+                <div class="upper-nav-content">
+                    <a href="track-order.html">Track an Order</a>
+                    <a>Français</a>
+                    <a id="region">Change Region</a>
+                </div>
+                <div class="lower-nav-content">
+                    <a href="index.html"><div class="logo">
+                        <img src="src/img/logo.png" alt="logo">
+                        <div class="logo-text">
+                            <h2>GoodWire</h1>
+                            <p>New or used, we're making an impact</p>
+                        </div>
+                    </div></a>
+                    <div class="right-content">
+                        <div class="cart">
+                            <i class="fa-solid fa-shopping-cart"></i>
+                            <a href="cart.html">Cart</a>
+                        </div>
+                        <div class="account">
+                            <i class="fa-solid fa-user"></i>
+                            <a id="account" href="login.html">Account</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="navbar-bottom">
+                <div class="links">
+                    <div class="dropdown">
+                        <button class="dropbtn" id="products-btn">Products
+                          <i id="products-caret" class="fa-solid fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content" id="products">
+                          <a href="#">View All</a>
+                        </div>
+                    </div> 
+                    <div class="dropdown">
+                        <button class="dropbtn" id="services-btn">Services
+                          <i id="services-caret" class="fa-solid fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content" id="services">
+                            <a href="#">Technical Support</a>
+                            <a href="#">Warranty</a>
+                        </div>
+                    </div> 
+                    <div class="dropdown">
+                        <button class="dropbtn" id="support-btn">Support
+                          <i id="support-caret" class="fa-solid fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content" id="support">
+                          <a href="about.html">About</a>
+                          <a href="contact.html">Contact Us</a>
+                          <a href="faq.html">FAQ</a>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <div class="order-history content">
+            <div class="left-content">
+                <a class="back" href="account.html"><i class="fa-solid fa-arrow-left"></i> &nbsp; Back to Account</a>
+                <a class="category" href="order-history.html"><i class="fa-solid fa-rotate-left"></i> &nbsp; Order History</a>
+                <a class="category" href="payment-information.html"><i class="fa-solid fa-credit-card"></i> &nbsp; Payment Information</a>
+                <a class="category selected" href="personal-information.html"><i class="fa-solid fa-user-circle"></i> &nbsp; Personal Information</a>
+            </div>
+            <div class="right-col">
+                <h1>Personal Information</h1>
+                <p>You'll need to refresh the page to see your changes.</p>
+                <div class="personal-info-form">
+                    <div class="current-details">
+                        <h2>Current Profile</h2>
+                        <p id="name"></p>
+                        <p id="email"></p>
+                        <p id="phone"></p>
+                        <p id="address"></p>
+                    </div>
+                    <div class="new-details-form">
+                        <h2 id="changing">What would you like to change?</h2>
+                        <div id="change-options">
+                            <div class="row">
+                                <div id="name-change-selection" class="change-card">
+                                    <i class="fa-solid fa-signature"></i>
+                                    <p>Name</p>
+                                </div>
+                                <div id="email-change-selection" class="change-card">
+                                    <i class="fa-solid fa-envelope"></i>
+                                    <p>Email Address</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div id="phone-change-selection" class="change-card">
+                                    <i class="fa-solid fa-phone"></i>
+                                    <p>Phone Number</p>
+                                </div>
+                                <div id="shipping-change-selection" class="change-card">
+                                    <i class="fa-solid fa-address-card"></i>
+                                    <p>Shipping Address</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="name-change">
+                            <form class="change-form">
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="first-name">First Name</label>
+                                        <input type="text" id="first-name" name="first-name" placeholder="First Name">
+                                    </div>
+                                    <div class="col">
+                                        <label for="last-name">Last Name</label>
+                                        <input type="text" id="last-name" name="last-name" placeholder="Last Name">
+                                    </div>
+                                </div>
+                                <button id="name-change-submit" type="button">Save</button>
+                            </form>
+                        </div>
+                        <div id="email-change">
+                            <form class="change-form email">
+                                <div class="row">
+                                    <div class="col email">
+                                        <label for="email-address">Email Adress</label>
+                                        <input type="text" id="email-address" name="email-address" placeholder="Email Address">
+                                    </div>
+                                </div>
+                                <button id="email-change-submit" type="button">Save</button>
+                            </form>
+                        </div>
+                        <div id="phone-change">
+                            <form class="change-form email">
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="phone">Phone Number</label>
+                                        <input type="text" id="phone" name="phone" placeholder="Phone Number">
+                                    </div>
+                                </div>
+                                <button id="phone-change-submit" type="button">Save</button>
+                            </form>
+                        </div>
+                        <div id="shipping-change">
+                            <form class="change-form">
+                                <div class="row address">
+                                    <div class="col">
+                                        <label for="street-num">Street #</label>
+                                        <input type="text" id="street-num" name="street-num" placeholder="Street #">
+                                    </div>
+                                    <div class="col">
+                                        <label for="street-name">Street Name</label>
+                                        <input type="text" id="street-name" name="street-name" placeholder="Street Name">
+                                    </div>
+                                </div>
+                                <div class="row address">
+                                    <div class="col">
+                                        <label for="city">City</label>
+                                        <input type="text" id="city" name="city" placeholder="City">
+                                    </div>
+                                    <div class="col">
+                                        <label for="province">Province</label>
+                                        <input type="text" id="province" name="province" placeholder="Province">
+                                    </div>
+                                </div>
+                                <div class="row address">
+                                    <div class="col">
+                                        <label for="country">Country</label>
+                                        <input type="text" id="country" name="country" placeholder="Country">
+                                    </div>
+                                    <div class="col">
+                                        <label for="postal-code">Postal Code</label>
+                                        <input type="text" id="postal-code" name="postal-code" placeholder="Postal Code">
+                                    </div>
+                                </div>
+                                <button id="shipping-change-submit" type="button">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="src/js/bundle.js"></script>
+<script type="module" src="src/js/index.js"></script>
+<script type="module" src="src/js/account.js"></script>
+</html>

@@ -97,6 +97,92 @@ window.onload = function() {
             //document.getElementById('orders').innerHTML = "<p>There are no orders to display</p>";
         }
     }
+
+    if (window.location.href.includes('personal-information.html')) {
+        var res = account.getAccountByName(sessionStorage.getItem('name'));
+        document.getElementById('name-change-selection').addEventListener('click', function() {
+            document.getElementById('name-change').style.display = "flex";
+            document.getElementById('changing').innerHTML = "Name Change";
+            document.getElementById('change-options').style.display = "none";
+        });
+        document.getElementById('name-change-submit').addEventListener('click', function() {
+            if (document.getElementById('first-name').value == '') {
+                document.getElementById('first-name').style.border = "1px solid red";
+            } 
+            if (document.getElementById('last-name').value == '') {
+                document.getElementById('last-name').style.border = "1px solid red";
+            }
+            var newName = document.getElementById('first-name').value + " " + document.getElementById('last-name').value;
+            sessionStorage.setItem('name', newName);
+            res.setName(newName);
+            document.getElementById('name-change').style.display = "none";
+            document.getElementById('change-options').style.display = "flex";
+        });
+        document.getElementById('email-change-selection').addEventListener('click', function() {
+            document.getElementById('email-change').style.display = "flex";
+            document.getElementById('changing').innerHTML = "Email Change";
+            document.getElementById('change-options').style.display = "none";
+        });
+        document.getElementById('email-change-submit').addEventListener('click', function() {
+            if (document.getElementById('email').value == '' || !document.getElementById('email').value.includes('@') || !document.getElementById('email').value.includes('.')) {
+                document.getElementById('email').style.border = "1px solid red";
+            } else {
+                res.setEmail(document.getElementById('email').value);
+                document.getElementById('email-change').style.display = "none";
+                document.getElementById('change-options').style.display = "flex";
+            }
+        });
+        document.getElementById('phone-change-selection').addEventListener('click', function() {
+            document.getElementById('phone-change').style.display = "flex";
+            document.getElementById('changing').innerHTML = "Phone Number Change";
+            document.getElementById('change-options').style.display = "none";
+        });
+        document.getElementById('phone-change-submit').addEventListener('click', function() {
+            if (document.getElementById('phone').value == '' || document.getElementById('phone').value.length != 10) {
+                document.getElementById('phone').style.border = "1px solid red";
+            } else {
+                res.setPhone(document.getElementById('phone').value);
+                document.getElementById('phone-change').style.display = "none";
+                document.getElementById('change-options').style.display = "flex";
+            }
+        });
+        document.getElementById('shipping-change-selection').addEventListener('click', function() {
+            document.getElementById('shipping-change').style.display = "flex";
+            document.getElementById('changing').innerHTML = "Address Change";
+            document.getElementById('change-options').style.display = "none";
+        });
+        document.getElementById('shipping-change-submit').addEventListener('click', function() {
+            if (document.getElementById('street-num').value == '') {
+                document.getElementById('street-num').style.border = "1px solid red";
+            }
+            if (document.getElementById('street-name').value == '') {
+                document.getElementById('street-name').style.border = "1px solid red";
+            }
+            if (document.getElementById('city').value == '') {
+                document.getElementById('city').style.border = "1px solid red";
+            }
+            if (document.getElementById('province').value == '') {
+                document.getElementById('province').style.border = "1px solid red";
+            }
+            if (document.getElementById('postal-code').value == '') {
+                document.getElementById('postal-code').style.border = "1px solid red";
+            }
+            if (document.getElementById('country').value == '') {
+                document.getElementById('country').style.border = "1px solid red";
+            }
+            res.changeAddress(document.getElementById('street-num').value, document.getElementById('street-name').value, document.getElementById('city').value, document.getElementById('province').value, document.getElementById('postal-code').value, document.getElementById('country').value);
+            document.getElementById('shipping-change').style.display = "none";
+            document.getElementById('change-options').style.display = "flex";
+        });
+        document.getElementById('name').innerHTML = "Full Name: " + res.name;
+        document.getElementById('email').innerHTML = "Email Address: " + res.email;
+        document.getElementById('phone').innerHTML = "Phone Number: " + res.phone.substring(0, 3) + '-' + res.phone.substring(3, 6) + '-' + res.phone.substring(6, 10);
+        if (res.getAddress() == '') {
+            document.getElementById('address').innerHTML = "Shipping Address: No address on file";
+        } else {
+            document.getElementById('address').innerHTML = "Shipping Address: " + res.getAddress();
+        }
+    }
 }
 
 window.onbeforeunload = function() {

@@ -22,6 +22,11 @@ class Account {
         return this.name;
     }
 
+    setName(newName) {
+        this.name = newName;
+        updateStorage();
+    }
+
     getPoints() {
         return this.points;
     }
@@ -35,6 +40,11 @@ class Account {
         return this.email;
     }
 
+    setEmail(newEmail) {
+        this.email = newEmail;
+        updateStorage();
+    }
+
     getPassword() {
         return this.password;
     }
@@ -43,9 +53,22 @@ class Account {
         return this.phone;
     }
 
+    setPhone(newPhone) {
+        this.phone = newPhone;
+        updateStorage();
+    }
+
     changePassword(newPassword) {
         this.password = newPassword;
         updateStorage();
+    }
+
+    getAddress() {
+        if (this.street_number == '' || this.street_name == '' || this.city == '' || this.province == '' || this.postal_code == '' || this.country == '') {
+            return '';
+        } else {
+            return this.street_number + ' ' + this.street_name + ', ' + this.city + ', ' + this.province + ', ' + this.postal_code + ', ' + this.country;
+        }
     }
 
     changeAddress(street_number, street_name, city, province, postal_code, country) {
