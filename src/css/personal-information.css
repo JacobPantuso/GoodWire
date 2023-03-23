@@ -1,0 +1,125 @@
+.personal-info-form {
+    display: flex;
+    flex-direction: row;
+    gap: 10rem;
+}
+
+.personal-info-form h3 {
+    color: rgb(29, 29, 75);
+}
+
+.new-details-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 70%;
+}
+
+
+#change-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.change-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 5px;
+    padding: 14px;
+    border: 1px lightgray solid;
+    width: 50%;
+    gap: 10px;
+    transition: 0.33s;
+}
+
+.change-card i {
+    font-size: 25px;
+}
+
+.change-card:hover {
+    cursor: pointer;
+    scale: 1.05;
+    box-shadow: 0px 5px 4px -1px #6a6a6a;
+}
+
+.change-card:hover i {
+    color: rgb(29, 29, 75);
+}
+
+.change-card p {
+    margin-bottom: 0px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 2rem;
+}
+
+#name-change {
+    display: none;
+}
+
+#email-change {
+    display: none;
+}
+
+#phone-change {
+    display: none;
+}
+
+.change-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+}
+
+.change-form button {
+    width: 40%;
+    margin: auto;
+}
+
+.change-form input {
+    padding: 10px;
+    border: 1px solid rgb(145, 145, 185);
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.change-form.email input {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid rgb(145, 145, 185);
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.col.email {
+    width: 50%;
+}
+
+.change-form.email button {
+    margin: 0;
+}
+
+.row.address {
+    justify-content: center;
+}
+
+#shipping-change {
+    display: none;
+}
+
+#street-num {
+    width: 4rem;
+}

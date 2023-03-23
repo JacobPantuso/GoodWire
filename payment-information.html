@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/f7c8be4779.js" crossorigin="anonymous"></script>
+        <link rel="icon" href="src/img/logo.png" type="image/png">
+        <link rel="stylesheet" href="src/css/index.css">
+        <link rel="stylesheet" href="src/css/account.css">
+        <link rel="stylesheet" href="src/css/order-history.css">
+        <title>GoodWire | Account</title>
+    </head>
+    <body>
+    <div class="index">
+        <div class="navbar">
+            <div class="navbar-top">
+                <div class="upper-nav-content">
+                    <a href="track-order.html">Track an Order</a>
+                    <a>Français</a>
+                    <a id="region">Change Region</a>
+                </div>
+                <div class="lower-nav-content">
+                    <a href="index.html"><div class="logo">
+                        <img src="src/img/logo.png" alt="logo">
+                        <div class="logo-text">
+                            <h2>GoodWire</h1>
+                            <p>New or used, we're making an impact</p>
+                        </div>
+                    </div></a>
+                    <div class="right-content">
+                        <div class="cart">
+                            <i class="fa-solid fa-shopping-cart"></i>
+                            <a href="cart.html">Cart</a>
+                        </div>
+                        <div class="account">
+                            <i class="fa-solid fa-user"></i>
+                            <a id="account" href="login.html">Account</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="navbar-bottom">
+                <div class="links">
+                    <div class="dropdown">
+                        <button class="dropbtn" id="products-btn">Products
+                          <i id="products-caret" class="fa-solid fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content" id="products">
+                          <a href="#">View All</a>
+                        </div>
+                    </div> 
+                    <div class="dropdown">
+                        <button class="dropbtn" id="services-btn">Services
+                          <i id="services-caret" class="fa-solid fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content" id="services">
+                            <a href="#">Technical Support</a>
+                            <a href="#">Warranty</a>
+                        </div>
+                    </div> 
+                    <div class="dropdown">
+                        <button class="dropbtn" id="support-btn">Support
+                          <i id="support-caret" class="fa-solid fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content" id="support">
+                          <a href="about.html">About</a>
+                          <a href="contact.html">Contact Us</a>
+                          <a href="faq.html">FAQ</a>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <div class="order-history content">
+            <div class="left-content">
+                <a class="back" href="account.html"><i class="fa-solid fa-arrow-left"></i> &nbsp; Back to Account</a>
+                <a class="category" href="order-history.html"><i class="fa-solid fa-rotate-left"></i> &nbsp; Order History</a>
+                <a class="category selected" href="payment-information.html"><i class="fa-solid fa-credit-card"></i> &nbsp; Payment Information</a>
+                <a class="category" href="personal-information.html"><i class="fa-solid fa-user-circle"></i> &nbsp; Personal Information</a>
+            </div>
+            <div class="right-col">
+                <h1>Payment Information</h1>
+                <p>Modify your payment details below</p>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="src/js/bundle.js"></script>
+<script type="module" src="src/js/index.js"></script>
+<script type="module" src="src/js/account.js"></script>
+</html>
