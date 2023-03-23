@@ -53,6 +53,29 @@ function openDropdown(element) {
 
 window.onload = function() {
     account.receiveStorage();
+
+    if (window.location.href.includes('contact.html')) {
+        document.getElementById('contact-submit').addEventListener('click', function() {
+            if (document.getElementById('fname').value == '') {
+                document.getElementById('fname').style.border = "1px solid red";
+            }
+            if (document.getElementById('lname').value == '') {
+                document.getElementById('lname').style.border = "1px solid red";
+            }
+            if (document.getElementById('email').value == '' || !document.getElementById('email').value.includes('@') || !document.getElementById('email').value.includes('.')) {
+                document.getElementById('email').style.border = "1px solid red";
+            }
+            if (document.getElementById('subject').value == '') {
+                document.getElementById('subject').style.border = "1px solid red";
+            }
+            if (document.getElementById('fname').value != '' && document.getElementById('lname').value != '' && (document.getElementById('email').value != '' || document.getElementById('email').value.includes('@') || document.getElementById('email').value.includes('.')) && document.getElementById('subject').value != '') {
+                document.getElementById('contact-form').style.display = "none";
+                document.getElementById('success-submit').style.display = "flex";
+            }
+        });
+    }
+
+
     if (window.location.href.includes('account.html')) {
         if (sessionStorage.getItem('name') == null) {
             window.location.href = 'login.html';
