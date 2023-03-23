@@ -6,6 +6,7 @@ export class Product {
         this.description = description;
         this.id = id;
         this.category = category;
+        products.push(this);
       }
 
       getName() {
@@ -51,14 +52,14 @@ export class Product {
 
     }
 
-export function updateStorage() {
+export function addToStorage() {
     localStorage.setItem('products', JSON.stringify(products));
 } 
 
 export function receiveStorage() {
     var retrievedProducts = JSON.parse(localStorage.getItem('products'));
     for (var i = 0; i < retrievedProducts.length; i++) {
-        new Product(retrievedProducts[i].name, retrievedProducts[i].price, retrievedProducts[i].description)
+        new Product(retrievedProducts[i].name, retrievedProducts[i].id, retrievedProducts[i].category, retrievedProducts[i].price, retrievedProducts[i].description)
     }
 }
 

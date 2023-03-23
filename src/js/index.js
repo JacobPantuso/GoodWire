@@ -1,4 +1,5 @@
 import * as account from './account.js';
+import * as products from './products.js';
 
 function openDropdown(element) {
     document.getElementById(element).classList.toggle("show");
