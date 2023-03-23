@@ -151,6 +151,7 @@ export function login() {
     console.log(email); 
     if (accounts.find(account => account.email == email && account.password == password)) {
         sessionStorage.setItem('name', retrieveObject(email).getName());
+        sessionStorage.setItem('guest', 'false');
         window.location.href = 'account.html';
     } else {
         document.getElementById('description').innerHTML = 'The credentials you entered are incorrect. Please try again.';

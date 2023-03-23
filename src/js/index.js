@@ -147,3 +147,22 @@ if (window.location.href.includes("account.html")) {
         window.location.href = "personal-information.html";
     });
 }
+
+if (window.location.href.includes("cart.html")) {
+    document.getElementById('login-btn').addEventListener('click', function() {
+        sessionStorage.setItem('guest', 'false');
+        window.location.href = 'login.html';
+    });
+    document.getElementById('guest-btn').addEventListener('click', function() {
+        sessionStorage.setItem('guest', 'true');
+        window.location.href = 'payment.html';
+    });
+    document.getElementById('checkout-btn').addEventListener('click', function() {
+        if (sessionStorage.getItem('name') == null) {
+            document.getElementById('cc').style.display = 'none';
+            document.getElementById('cag').style.display = 'flex';
+        } else {
+            window.location.href = 'payment.html';
+        }
+    });
+}

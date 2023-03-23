@@ -20,20 +20,66 @@ function validatePayment() {
     let expiryMonth = expiryDate.split('/')[0];
     let expiryYear = expiryDate.split('/')[1];
     let expiryDateObj = new Date(`20${expiryYear}`, expiryMonth - 1, 1);
-    if (name == '' || card.length != 16 || cvv.length != 3 || expiryDateObj < currentDate) {
-        if (name == '') {
-            document.getElementById('name').style.borderColor = 'red';
-        } 
-        if (card.length != 16) {
-            document.getElementById('card').style.borderColor = 'red';
-        }
-        if (cvv.length != 3) {
-            document.getElementById('cvv').style.borderColor = 'red';
-        } 
-        if (expiryDateObj < currentDate || expiryDate == '') {
-            document.getElementById('date').style.borderColor = 'red';
+    var inputs = document.getElementsByTagName('input');
+    for (var i = 0; i < inputs.length; i ++) {
+        inputs[i].style.borderColor = 'black';
+    }
+    if (sessionStorage.getItem('guest') == 'false') {
+        if (name == '' || card.length != 16 || cvv.length != 3 || expiryDateObj < currentDate) {
+            if (name == '') {
+                document.getElementById('name').style.borderColor = 'red';
+            } 
+            if (card.length != 16) {
+                document.getElementById('card').style.borderColor = 'red';
+            }
+            if (cvv.length != 3) {
+                document.getElementById('cvv').style.borderColor = 'red';
+            } 
+            if (expiryDateObj < currentDate || expiryDate == '') {
+                document.getElementById('date').style.borderColor = 'red';
+            }
+        } else {
+            window.location.href = 'process-payment.html';
         }
     } else {
-        window.location.href = 'process-payment.html';
+        var streetName = document.getElementById('street-name').value;
+        var streetNumber = document.getElementById('street-num').value;
+        var city = document.getElementById('city').value;
+        var postal = document.getElementById('postal').value;
+        var province = document.getElementById('province').value;
+        if (name == '' || card.length != 16 || cvv.length != 3 || expiryDateObj < currentDate || streetName == '' || streetNumber == '' || city == '' || postal == '' || province == '') {
+            if (name == '') {
+                document.getElementById('name').style.borderColor = 'red';
+            } 
+            if (card.length != 16) {
+                document.getElementById('card').style.borderColor = 'red';
+            }
+            if (cvv.length != 3) {
+                document.getElementById('cvv').style.borderColor = 'red';
+            } 
+            if (expiryDateObj < currentDate || expiryDate == '') {
+                document.getElementById('date').style.borderColor = 'red';
+            }
+            if (streetName == '') {
+                document.getElementById('street-name').style.borderColor = 'red';
+            }
+            if (streetNumber == '') {
+                document.getElementById('street-num').style.borderColor = 'red';
+            }
+            if (city == '') {
+                document.getElementById('city').style.borderColor = 'red';
+            }
+            if (postal == '') {
+                document.getElementById('postal').style.borderColor = 'red';
+            }
+            if (province == '') {
+                document.getElementById('province').style.borderColor = 'red';
+            }
+        }
     }
+}
+
+if (sessionStorage.getItem('guest') == 'true') {
+    document.getElementById('loggedIn').style.display = 'none';
+    document.getElementById('shipping-info').style.display = 'flex';
 }
