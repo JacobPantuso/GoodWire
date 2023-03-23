@@ -80,8 +80,8 @@ window.onload = function() {
         if (sessionStorage.getItem('name') == null) {
             window.location.href = 'login.html';
         } else {
-            document.getElementById("username").innerHTML = account.getAccountByName(sessionStorage.getItem('name')).name;
             var res = account.getAccountByName(sessionStorage.getItem('name'));
+            document.getElementById("username").innerHTML = account.getAccountByName(sessionStorage.getItem('name')).name;
             document.getElementById('points').innerHTML = account.getAccountByName(sessionStorage.getItem('name')).points + " points";
         }
     }
