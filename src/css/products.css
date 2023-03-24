@@ -12,6 +12,7 @@
     font-size: 30px;
     text-align: center;
     color: black;
+
 }
 
 .products-block .text{
@@ -28,6 +29,7 @@
     column-gap: 60px;
     row-gap: 100px;
     justify-content: center;
+    padding-bottom: 100px;
     
  
 }
@@ -74,12 +76,12 @@
  .products-grid .tools{
     text-align: center;
     font-size: 16px;
-    color: rgba(255, 0, 0, 0.993);
+    color: red;
 
  }
 
  .fa-cart-plus{
-    background:#0652DD;
+    background:#06dd4e;
   }
   
   .addtocart{
@@ -92,7 +94,7 @@
     border:none;
     font-size:10px;
     position:relative;
-    background:#0652DD;
+    background:#1ed327;
     cursor:pointer;
     height:30px;
     width:120px;
@@ -105,7 +107,7 @@
   }
   .pretext{
     color:#fff;
-    background:#0652DD;
+    background:#06dd2a;
     position:absolute;
     top:0;
     left:0;
@@ -118,21 +120,6 @@
   }
   i{
     margin-right:10px;
+    font-size: 13px;
   }
-  .done{
-    background:#be2edd;
-    position:absolute;
-    width:100%;
-    top:0;
-    left:0;
-    transition:transform 0.3s ease;
-  
-    transform:translate(-110%) skew(-40deg);
-  }
-  .posttext{
-    background:#be2edd;
-  }
-  .fa-check{
-    background:#be2edd;
-  }
-  
+ 
