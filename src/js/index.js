@@ -142,10 +142,90 @@ window.onload = function () {
         } else {
             numOfOrdersHTML.innerHTML = "There are " + numOfOrders + " to display"
         }
-        if (res.getOrders().length != 0) {
+        if (numOfOrders != 0) {
             var orders = res.getOrders()
             for (var i = 0; i < orders.length; i++) {
-
+                var Order = orders[i];
+                var orderCard = document.createElement('div');
+                orderCard.className = "order-card";
+                var orderCardContent = document.createElement('div');
+                orderCardContent.className = "order-card-content";
+                var topInfo = document.createElement('div');
+                topInfo.className = "top-info";
+                var leftTop = document.createElement('div');
+                leftTop.className = "left-top";
+                var orderNumber = document.createElement('h3');
+                orderNumber.id = "order-number";
+                orderNumber.innerHTML = "Order #" + Order.orderNumber;
+                var datePlaced = document.createElement('p');
+                datePlaced.id = "date-placed";
+                datePlaced.innerHTML = "Date Placed: " + Order.getOrderDate();
+                var rightTop = document.createElement('div');
+                rightTop.className = "right-top";
+                var price = document.createElement('p');
+                price.id = "price";
+                price.innerHTML = "$" + Order.price;
+                leftTop.appendChild(orderNumber);
+                leftTop.appendChild(datePlaced);
+                rightTop.appendChild(price);
+                topInfo.appendChild(leftTop);
+                topInfo.appendChild(rightTop);
+                orderCardContent.appendChild(topInfo);
+                for (var j = 0; j < Order.getItems().length; j++) {
+                    var productDetails = document.createElement('div');
+                    productDetails.id = "product-details";
+                    var productImage = document.createElement('img');
+                    productImage.id = "product-image";
+                    productImage.src = "src/img/" + Order.getItems()[j].imagePath;
+                    var rightDetails = document.createElement('div');
+                    rightDetails.id = "right-details";
+                    var name = document.createElement('h4');
+                    name.id = "name";
+                    name.innerHTML = Order.getItems()[j].name;
+                    var quantity = document.createElement('p');
+                    quantity.innerHTML = "Quantity: 1";
+                    productDetails.appendChild(productImage);
+                    rightDetails.appendChild(name);
+                    rightDetails.appendChild(quantity);
+                    productDetails.appendChild(rightDetails);
+                    orderCardContent.appendChild(productDetails);
+                }
+                var orderControls = document.createElement('div');
+                orderControls.className = "order-controls";
+                var left = document.createElement('div');
+                left.className = "left";
+                var shippingStatus = document.createElement('h4');
+                shippingStatus.id = "shipping-status";
+                shippingStatus.innerHTML = "Shipping Status: " + Order.getStatus();
+                var shippingBar = document.createElement('div');
+                shippingBar.className = "shipping-bar";
+                var shippingProgress = document.createElement('div');
+                shippingProgress.className = "shipping-progress";
+                shippingProgress.style.width = Order.getStatus();
+                var orderCancel = document.createElement('button');
+                orderCancel.id = "order-cancel";
+                orderCancel.className = "cancel";
+                orderCancel.innerHTML = "Cancel Order";
+                orderCancel.addEventListener('click', (function (i) {
+                    return function () {
+                        order.cancelOrder(Order.getOrderNumber());
+                        window.location.href = 'order-history.html';
+                    }
+                })(i));
+                left.appendChild(shippingStatus);
+                shippingBar.appendChild(shippingProgress);
+                left.appendChild(shippingBar);
+                orderControls.appendChild(left);
+                orderControls.appendChild(orderCancel);
+                rightDetails.appendChild(name);
+                rightDetails.appendChild(quantity);
+                productDetails.appendChild(productImage);
+                productDetails.appendChild(rightDetails);
+                orderCardContent.appendChild(productDetails);
+                orderCard.appendChild(orderCardContent);
+                orderCard.appendChild(document.createElement('hr'));
+                orderCard.appendChild(orderControls);
+                document.getElementById('orders').appendChild(orderCard);
             }
         } else {
             //document.getElementById('orders').innerHTML = "<p>There are no orders to display</p>";
@@ -230,7 +310,7 @@ window.onload = function () {
         });
         document.getElementById('name').innerHTML = "Full Name: " + res.name;
         document.getElementById('email').innerHTML = "Email Address: " + res.email;
-        document.getElementById('phone').innerHTML = "Phone Number: " + res.phone.substring(0, 3) + '-' + res.phone.substring(3, 6) + '-' + res.phone.substring(6, 10);
+        document.getElementById('curphone').innerHTML = "Phone Number: " + res.phone.substring(0, 3) + '-' + res.phone.substring(3, 6) + '-' + res.phone.substring(6, 10);
         if (res.getAddress() == '') {
             document.getElementById('address').innerHTML = "Shipping Address: No address on file";
         } else {
