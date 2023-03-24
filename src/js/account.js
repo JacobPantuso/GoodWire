@@ -31,6 +31,15 @@ class Account {
         return this.points;
     }
 
+    getCart() {
+        return this.cart;
+    }
+
+    setCart(cart) {
+        this.cart = cart;
+        updateStorage();
+    }
+
     addPoints(points) {
         this.points += points;
         updateStorage();
