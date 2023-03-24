@@ -87,6 +87,27 @@ const prod15button = document.querySelector('prod15')
 const prod16button = document.querySelector('prod16')
 const prod17button = document.querySelector('prod17')
 
-prod0.addEventListener("click", function(){
+//Assign each product button its appropriate product object
+prod0button.setAttribute("data-prod0", JSON.stringify(prod0));
+prod1button.setAttribute("data-prod1", JSON.stringify(prod1));
+prod2button.setAttribute("data-prod2", JSON.stringify(prod2));
+prod3button.setAttribute("data-prod3", JSON.stringify(prod3));
+prod4button.setAttribute("data-prod4", JSON.stringify(prod4));
+prod5button.setAttribute("data-prod5", JSON.stringify(prod5));
+prod6button.setAttribute("data-prod6", JSON.stringify(prod6));
+prod7button.setAttribute("data-prod7", JSON.stringify(prod7));
+prod8button.setAttribute("data-prod8", JSON.stringify(prod8));
+prod9button.setAttribute("data-prod9", JSON.stringify(prod9));
+prod10button.setAttribute("data-prod10", JSON.stringify(prod10));
+prod11button.setAttribute("data-prod11", JSON.stringify(prod11));
+prod12button.setAttribute("data-prod12", JSON.stringify(prod12));
+prod13button.setAttribute("data-prod13", JSON.stringify(prod13));
+prod14button.setAttribute("data-prod14", JSON.stringify(prod14));
+prod15button.setAttribute("data-prod15", JSON.stringify(prod15));
+prod16button.setAttribute("data-prod16", JSON.stringify(prod16));
+prod17button.setAttribute("data-prod17", JSON.stringify(prod17));
 
-}
+
+// to retrieve the object from the div later, you can use:
+let retrievedObject = JSON.parse(myDiv.getAttribute("data-prodNUMBER"));
+console.log(retrievedObject);
