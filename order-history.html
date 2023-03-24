@@ -50,7 +50,7 @@
                           <i id="products-caret" class="fa-solid fa-caret-down"></i>
                         </button>
                         <div class="dropdown-content" id="products">
-                          <a href="#">View All</a>
+                          <a href="products.html">View All</a>
                         </div>
                     </div> 
                     <div class="dropdown">
@@ -58,8 +58,8 @@
                           <i id="services-caret" class="fa-solid fa-caret-down"></i>
                         </button>
                         <div class="dropdown-content" id="services">
-                            <a href="#">Technical Support</a>
-                            <a href="#">Warranty</a>
+                            <a href="tech-support.html">Technical Support</a>
+                            <a href="warranty.html">Warranty</a>
                         </div>
                     </div> 
                     <div class="dropdown">
@@ -79,7 +79,6 @@
             <div class="left-content">
                 <a class="back" href="account.html"><i class="fa-solid fa-arrow-left"></i> &nbsp; Back to Account</a>
                 <a class="category selected" href="order-history.html"><i class="fa-solid fa-rotate-left"></i> &nbsp; Order History</a>
-                <a class="category" href="payment-information.html"><i class="fa-solid fa-credit-card"></i> &nbsp; Payment Information</a>
                 <a class="category" href="personal-information.html"><i class="fa-solid fa-user-circle"></i> &nbsp; Personal Information</a>
             </div>
             <div class="right-col">
@@ -87,42 +86,6 @@
                 <p id="order-history-description"></p>
                 <div id="orders" class="order-list">
                     <p id="num-of-orders"></p>
-                    <div class="order-card">
-                        <div class="order-card-content">
-                            <div class="top-info">
-                                <div class="left-top">
-                                    <h3 id="order-number">Order #1</h3>
-                                    <p id="date-placed">Placed on March 22, 2023</p>
-                                </div>
-                                <div class="right-top">
-                                    <p>$789.43</p>
-                                </div>
-                            </div>
-                            <div id="product-details">
-                                <img id="product-image" src="src/img/xbox.jpg">
-                                <div id="right-details">
-                                    <h4>Placeholder Product</h4>
-                                    <p>Quantity: 1</p>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="order-controls">
-                            <div class="left">
-                                <h4>Your order is being prepared to ship</h4>
-                                <div class="shipping-bar">
-                                    <div class="shipping-progress"></div>
-                                </div>
-                            </div>
-                            <button>Cancel Order</button>
-                        </div>
-                    </div>
-                    <div class="order-card">
-                        <div class="order-card-content">
-                            <h3 id="order-number">Order #1</h3>
-                            <p id="date-placed">Placed on March 22, 2023</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -131,4 +94,5 @@
 <script src="src/js/bundle.js"></script>
 <script type="module" src="src/js/index.js"></script>
 <script type="module" src="src/js/account.js"></script>
+<script type="module" src="src/js/order.js"></script>
 </html>

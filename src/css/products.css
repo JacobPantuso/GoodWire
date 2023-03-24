@@ -1,0 +1,167 @@
+.products-block{
+  display: flex;
+  flex-direction: column;
+  color: black;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.products-block .title{
+    font-size: 35px;
+    text-align: center;
+    color: black;
+
+}
+
+#product-grid {
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  gap: 2rem;
+}
+
+.product-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  color: black;
+  width: 33%;
+}
+
+.product img {
+  width: 230px;
+  height: 230px;
+  margin: auto;
+}
+
+.product-button {
+  width: 35%;
+  margin: auto;
+  padding: 6px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(29, 29, 75);
+  transition: 0.33s;
+}
+
+.product-button:hover {
+  background-color: rgb(54, 54, 159);
+  cursor: pointer;
+  scale: 1.1;
+}
+
+
+
+.product-name {
+  margin-bottom: 0px;
+  font-weight: bold;
+}
+
+.product-price {
+  margin-top: 5px;
+}
+
+/*
+
+This code will not be supported on linux machines.
+
+.products-grid img{
+  width: 50%;
+   border:solid;
+   border-width: 0.1px;
+   border-color: rgba(0, 0, 0, 0.1);
+   border-radius: 15px;
+   transition: 0.3s;
+   
+}
+.product{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+    animation: bounce 2.5s infinite linear;
+    display: inline-block;}
+
+/*@keyframes bounce{
+    50% { transform: translateY(-10px) }
+}
+  
+.products-grid img:hover{
+    box-shadow: 1px 1px 12px #7e7e7e;
+    cursor:pointer;
+ }
+
+ .products-grid.night img:hover{
+    box-shadow: 1px 1px 12px #ffffff
+ }
+
+
+ .products-grid .name{
+    margin-top: 7px;
+    margin-bottom: 2px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 22px;
+    color: black
+ }
+ 
+ .products-grid .tools{
+    text-align: center;
+    font-size: 20px;
+    color: red;
+    font-weight:bold;
+
+ }
+
+ .fa-cart-plus{
+    background:#06dd4e;
+  }
+  
+  .addtocart{
+    padding:0.5em 1em 0.5em 1em;
+    border-radius:15px;
+    text-align: center;
+    display: block;
+    margin-top: 5px;
+    border:none;
+    font-size:10px;
+    position:relative;
+    background:#1ed327;
+    cursor:pointer;
+    height:30px;
+    width:120px;
+    overflow:hidden;
+    transition:transform 0.1s;
+    z-index:1;
+  }
+  .addtocart:hover{
+    transform:scale(1.1);
+  }
+  .pretext{
+    color:#fff;
+    background:#06dd2a;
+    font-weight:bold;
+    position:absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family: 'Quicksand', sans-serif;
+  }
+  i{
+    margin-right:10px;
+    font-size: 15px;
+  }
+ 
+  */

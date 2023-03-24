@@ -31,6 +31,15 @@ class Account {
         return this.points;
     }
 
+    getCart() {
+        return this.cart;
+    }
+
+    setCart(cart) {
+        this.cart = cart;
+        updateStorage();
+    }
+
     addPoints(points) {
         this.points += points;
         updateStorage();
@@ -91,7 +100,18 @@ class Account {
     }
 
     removeOrder(order) {
-        this.orders.splice(this.orders.indexOf(order), 1);
+        var newOrders = [];
+        for (var i = 0; i < this.orders.length; i++) {
+            if (this.orders[i].getOrderNumber() != order.getOrderNumber()) {
+                newOrders.push(this.orders[i]);
+            }
+        }
+        this.orders = newOrders;
+        updateStorage();
+    }
+
+    clearOrders() {
+        this.orders = [];
         updateStorage();
     }
 }

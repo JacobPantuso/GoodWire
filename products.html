@@ -9,7 +9,7 @@
     <link rel="icon" href="src/img/logo.png" type="image/png">
     <link rel="stylesheet" href="src/css/index.css">
     <link rel="stylesheet" href="src/css/products.css">
-    <title>GoodWire | Products</title>
+    <title>Products</title>
 </head>
 <body>
     <div class="index">
@@ -31,7 +31,9 @@
                     <div class="right-content">
                         <div class="cart">
                             <i class="fa-solid fa-shopping-cart"></i>
-                            <a href="cart.html">Cart</a>
+                            <a href="cart.html">
+                                <ion-icon name="basket"></ion-icon>Cart <span>0</span>
+                            </a>
                         </div>
                         <div class="account">
                             <i class="fa-solid fa-user"></i>
@@ -55,8 +57,8 @@
                           <i id="services-caret" class="fa-solid fa-caret-down"></i>
                         </button>
                         <div class="dropdown-content" id="services">
-                            <a href="#">Technical Support</a>
-                            <a href="#">Warranty</a>
+                            <a href="tech-support.html">Technical Support</a>
+                            <a href="warranty.html">Warranty</a>
                         </div>
                     </div> 
                     <div class="dropdown">
@@ -70,11 +72,24 @@
                         </div>
                     </div> 
                 </div>
+                
             </div>
         </div>
+            
+        <div class="products-block" id="product-section">
+            <div class="title">Products</div>
+            <div class="text">Take a look at our amazing products</div>
+
+            <div id="product-grid">
+                
+            </div>
+        </div>
+
+        
     </div>
 </body>
 <script type="module" src="src/js/index.js"></script>
 <script type="module" src="src/js/account.js"></script>
 <script type="module" src="src/js/cart.js"></script>
+<script type="module" src="src/js/product.js"></script>
 </html>
