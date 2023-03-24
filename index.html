@@ -10,7 +10,6 @@
     <script type="module" src="src/js/account.js"></script>
     <link rel="icon" href="src/img/logo.png" type="image/png">
     <link rel="stylesheet" href="src/css/index.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <title>GoodWire | Home</title>
 </head>
 <body>
@@ -77,19 +76,23 @@
             </div>
         </div>
         <div class="index-content" id="splash">
-            <script>
-                $(document).ready(function() {
-                    $( "#brand-1" ).hide(2000, function(){
-                        document.getElementById("splash").style.backgroundColor = "white"
-                        $( "#splash" ).hide(1000);
-                    });
-                    });
-            </script>
             <h1 class="logo-header">
-                <div id="brand-1"><img src="src/img/logo.png" alt="logo"><p class="logo" style="color: white;">GoodWire</p></div>
+                <div id="brand-1"><img src="src/img/logo.png" alt="logo"><p class="splash">GoodWire</p><p id="smalltext" class="splash small">New or used, we're making an impact</p></div>
             </h1>
         </div>
     </div>
 </body>
+<script>
+        // fade in the brand-1 slowly
+        document.getElementById("brand-1").style.transition = "1.6s";
+        setTimeout(function() {
+            document.getElementById("brand-1").style.opacity = "1";
+        }, 300);
+        // fade in the smalltext slowly
+        document.getElementById("smalltext").style.transition = "2.6s";
+        setTimeout(function() {
+            document.getElementById("smalltext").style.opacity = "1";
+        }, 300);
+</script>
 <script type="module" src="src/js/cart.js"></script>
 </html>
