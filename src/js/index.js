@@ -54,7 +54,7 @@ function openDropdown(element) {
 
 window.onload = function() {
     account.receiveStorage();
-    products.initiateProducts();
+    var prodArray = products.initiateProducts();
     if (window.location.href.includes('contact.html')) {
         document.getElementById('contact-submit').addEventListener('click', function() {
             if (document.getElementById('fname').value == '') {
@@ -78,6 +78,15 @@ window.onload = function() {
 
     if (window.location.href.includes('products.html')) {
         products.loadProducts();
+
+        for (var i = 0; i < prodArray.length; i ++) {
+            var prodButton = document.getElementById('prod'+(i+1));
+            prodButton.addEventListener('click', (function(i) {
+                return function () {
+                    console.log(prodArray[i]);
+                };
+            }(i)));
+        }
     }
 
     if (window.location.href.includes('account.html')) {
