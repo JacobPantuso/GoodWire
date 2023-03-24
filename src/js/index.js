@@ -2,6 +2,7 @@ import * as account from './account.js';
 import * as products from './product.js';
 import * as cart from './cart.js';
 import * as order from './order.js';
+import * as setItems from './cart.js';
 
 
 function openDropdown(element) {
@@ -26,9 +27,9 @@ function openDropdown(element) {
     if (support.classList.contains('show') && element != "support") {
         support.classList.remove('show');
     }
-  }
-  
-  window.onclick = function(e) {
+}
+
+window.onclick = function (e) {
     if (!e.target.matches('.dropbtn')) {
         var products = document.getElementById("products");
         var productsCaret = document.getElementById("products-caret");
@@ -52,15 +53,15 @@ function openDropdown(element) {
             supportCaret.classList.add('fa-caret-down');
         }
     }
-  }
+}
 
 
-window.onload = function() {
+window.onload = function () {
     account.receiveStorage();
     order.receiveStorage();
     var prodArray = products.initiateProducts();
     if (window.location.href.includes('contact.html')) {
-        document.getElementById('contact-submit').addEventListener('click', function() {
+        document.getElementById('contact-submit').addEventListener('click', function () {
             if (document.getElementById('fname').value == '') {
                 document.getElementById('fname').style.border = "1px solid red";
             }
@@ -82,32 +83,28 @@ window.onload = function() {
 
     if (window.location.href.includes('products.html')) {
         products.loadProducts();
-        let nums = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-        for (var i = 0; i < prodArray.length; i ++) {
-            document.getElementById('prod'+(i+1)).addEventListener('click', (function(i) {
+        let nums = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+        for (var i = 0; i < prodArray.length; i++) {
+            document.getElementById('prod' + (i + 1)).addEventListener('click', (function (i) {
                 return function () {
-                    var prodButton = document.getElementById('prod'+(i+1));
-                    
-
+                    var prodButton = document.getElementById('prod' + (i + 1));
                     // When you click Add to cart, the else statement will run
-
-                    if (nums[i] %2 === 0){
+                    if (nums[i] % 2 === 0) {
                         prodButton.innerHTML = "Add to Cart"
                         prodButton.style.backgroundColor = "";
                         nums[i]--;
-                        
+                        cart.RemoveFromCart(prodArray[i]);
                     }
-                      else{
+                    else {
                         prodButton.innerHTML = "Remove from Cart"
                         prodButton.style.backgroundColor = "rgb(99 157 41)";
                         nums[i]++;
-                        
-                      }
-                      
+                        cart.cartNumbers(prodArray[i]);
+                    }
                 };
+
             }(i)));
         }
-                
     }
 
     if (window.location.href.includes('account.html')) {
@@ -127,7 +124,7 @@ window.onload = function() {
     if (sessionStorage.getItem('name') != null) {
         document.getElementById('account').innerHTML = sessionStorage.getItem('name');
         document.getElementById('region').innerHTML = "Logout";
-        document.getElementById('region').addEventListener('click', function() {
+        document.getElementById('region').addEventListener('click', function () {
             sessionStorage.removeItem('name');
             window.location.href = 'login.html';
         });
@@ -147,7 +144,7 @@ window.onload = function() {
         }
         if (res.getOrders().length != 0) {
             var orders = res.getOrders()
-            for (var i = 0; i < orders.length; i ++) {
+            for (var i = 0; i < orders.length; i++) {
 
             }
         } else {
@@ -157,15 +154,15 @@ window.onload = function() {
 
     if (window.location.href.includes('personal-information.html')) {
         var res = account.getAccountByName(sessionStorage.getItem('name'));
-        document.getElementById('name-change-selection').addEventListener('click', function() {
+        document.getElementById('name-change-selection').addEventListener('click', function () {
             document.getElementById('name-change').style.display = "flex";
             document.getElementById('changing').innerHTML = "Name Change";
             document.getElementById('change-options').style.display = "none";
         });
-        document.getElementById('name-change-submit').addEventListener('click', function() {
+        document.getElementById('name-change-submit').addEventListener('click', function () {
             if (document.getElementById('first-name').value == '') {
                 document.getElementById('first-name').style.border = "1px solid red";
-            } 
+            }
             if (document.getElementById('last-name').value == '') {
                 document.getElementById('last-name').style.border = "1px solid red";
             }
@@ -175,12 +172,12 @@ window.onload = function() {
             document.getElementById('name-change').style.display = "none";
             document.getElementById('change-options').style.display = "flex";
         });
-        document.getElementById('email-change-selection').addEventListener('click', function() {
+        document.getElementById('email-change-selection').addEventListener('click', function () {
             document.getElementById('email-change').style.display = "flex";
             document.getElementById('changing').innerHTML = "Email Change";
             document.getElementById('change-options').style.display = "none";
         });
-        document.getElementById('email-change-submit').addEventListener('click', function() {
+        document.getElementById('email-change-submit').addEventListener('click', function () {
             if (document.getElementById('email').value == '' || !document.getElementById('email').value.includes('@') || !document.getElementById('email').value.includes('.')) {
                 document.getElementById('email').style.border = "1px solid red";
             } else {
@@ -189,12 +186,12 @@ window.onload = function() {
                 document.getElementById('change-options').style.display = "flex";
             }
         });
-        document.getElementById('phone-change-selection').addEventListener('click', function() {
+        document.getElementById('phone-change-selection').addEventListener('click', function () {
             document.getElementById('phone-change').style.display = "flex";
             document.getElementById('changing').innerHTML = "Phone Number Change";
             document.getElementById('change-options').style.display = "none";
         });
-        document.getElementById('phone-change-submit').addEventListener('click', function() {
+        document.getElementById('phone-change-submit').addEventListener('click', function () {
             if (document.getElementById('phone').value == '' || document.getElementById('phone').value.length != 10) {
                 document.getElementById('phone').style.border = "1px solid red";
             } else {
@@ -203,12 +200,12 @@ window.onload = function() {
                 document.getElementById('change-options').style.display = "flex";
             }
         });
-        document.getElementById('shipping-change-selection').addEventListener('click', function() {
+        document.getElementById('shipping-change-selection').addEventListener('click', function () {
             document.getElementById('shipping-change').style.display = "flex";
             document.getElementById('changing').innerHTML = "Address Change";
             document.getElementById('change-options').style.display = "none";
         });
-        document.getElementById('shipping-change-submit').addEventListener('click', function() {
+        document.getElementById('shipping-change-submit').addEventListener('click', function () {
             if (document.getElementById('street-num').value == '') {
                 document.getElementById('street-num').style.border = "1px solid red";
             }
@@ -242,65 +239,65 @@ window.onload = function() {
     }
 }
 
-window.onbeforeunload = function() {
+window.onbeforeunload = function () {
     account.updateStorage();
 }
 
 /* Navigation Event Listeners */
-document.getElementById('products-btn').addEventListener('click', function() {
+document.getElementById('products-btn').addEventListener('click', function () {
     openDropdown('products');
 });
-document.getElementById('services-btn').addEventListener('click', function() {
+document.getElementById('services-btn').addEventListener('click', function () {
     openDropdown('services');
 });
-document.getElementById('support-btn').addEventListener('click', function() {
+document.getElementById('support-btn').addEventListener('click', function () {
     openDropdown('support');
 });
 
 /* Account Event Listeners */
 if (window.location.href.includes("login.html")) {
-    document.getElementById('sign-in').addEventListener('click', function() {
+    document.getElementById('sign-in').addEventListener('click', function () {
         account.login();
     });
 }
 
 if (window.location.href.includes("register.html")) {
-    document.getElementById('register').addEventListener('click', function() {
+    document.getElementById('register').addEventListener('click', function () {
         account.validateRegister();
     });
 }
 
 if (window.location.href.includes("forgot-password.html")) {
-    document.getElementById('authenticate').addEventListener('click', function() {
+    document.getElementById('authenticate').addEventListener('click', function () {
         account.isAuth(localStorage.getItem('auth-code'));
     });
-    document.getElementById('reset-password').addEventListener('click', function() {
+    document.getElementById('reset-password').addEventListener('click', function () {
         account.resetPassword(document.getElementById('email').value);
     });
 }
 
 if (window.location.href.includes("account.html")) {
-    document.getElementById('order-history').addEventListener('click', function() {
+    document.getElementById('order-history').addEventListener('click', function () {
         window.location.href = "order-history.html";
     });
-    document.getElementById('contact-info').addEventListener('click', function() {
+    document.getElementById('contact-info').addEventListener('click', function () {
         window.location.href = "contact.html";
     });
-    document.getElementById('personal-info').addEventListener('click', function() {
+    document.getElementById('personal-info').addEventListener('click', function () {
         window.location.href = "personal-information.html";
     });
 }
 
 if (window.location.href.includes("cart.html")) {
-    document.getElementById('login-btn').addEventListener('click', function() {
+    document.getElementById('login-btn').addEventListener('click', function () {
         sessionStorage.setItem('guest', 'false');
         window.location.href = 'login.html';
     });
-    document.getElementById('guest-btn').addEventListener('click', function() {
+    document.getElementById('guest-btn').addEventListener('click', function () {
         sessionStorage.setItem('guest', 'true');
         window.location.href = 'payment.html';
     });
-    document.getElementById('checkout-btn').addEventListener('click', function() {
+    document.getElementById('checkout-btn').addEventListener('click', function () {
         if (sessionStorage.getItem('name') == null) {
             document.getElementById('cc').style.display = 'none';
             document.getElementById('cag').style.display = 'flex';
