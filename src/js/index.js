@@ -278,8 +278,8 @@ if (window.location.href.includes("account.html")) {
     document.getElementById('order-history').addEventListener('click', function() {
         window.location.href = "order-history.html";
     });
-    document.getElementById('payment-info').addEventListener('click', function() {
-        window.location.href = "payment-information.html";
+    document.getElementById('contact-info').addEventListener('click', function() {
+        window.location.href = "contact.html";
     });
     document.getElementById('personal-info').addEventListener('click', function() {
         window.location.href = "personal-information.html";
