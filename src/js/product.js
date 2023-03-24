@@ -96,6 +96,7 @@ export function loadProducts() {
     productImage.src = "../src/img/" + products[i].imagePath;
     productName.innerHTML = products[i].name;
     productPrice.innerHTML = "$" + products[i].price;
+    productButton.id = "prod" + i;
     productDiv.appendChild(productImage);
     productDiv.appendChild(productName);
     productDiv.appendChild(productPrice);
