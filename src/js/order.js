@@ -87,8 +87,12 @@ export function getOrder(orderNumber) {
 export function receiveStorage() {
     if (sessionStorage.getItem('guest') == 'true') {
         var retrievedOrders = JSON.parse(localStorage.getItem('orders'));
-        for (var i = 0; i < retrievedOrders.length; i++) {
-            orders.push(new Order(retrievedOrders[i].orderNumber, retrievedOrders[i].orderDate, retrievedOrders[i].cart, retrievedOrders[i].status, retrievedOrders[i].email));
+        if (retrievedOrders == null) {
+            localStorage.setItem('orders') = [];
+        } else {
+            for (var i = 0; i < retrievedOrders.length; i++) {
+                orders.push(new Order(retrievedOrders[i].orderNumber, retrievedOrders[i].orderDate, retrievedOrders[i].cart, retrievedOrders[i].status, retrievedOrders[i].email));
+            }
         }
     } else if (sessionStorage.getItem('guest') == 'false') {
         var res = account.getAccountByName(sessionStorage.getItem('name'));

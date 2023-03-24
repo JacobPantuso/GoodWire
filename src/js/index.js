@@ -126,6 +126,7 @@ window.onload = function () {
         document.getElementById('region').innerHTML = "Logout";
         document.getElementById('region').addEventListener('click', function () {
             sessionStorage.removeItem('name');
+            sessionStorage.setItem('guest', 'true');
             window.location.href = 'login.html';
         });
     }
