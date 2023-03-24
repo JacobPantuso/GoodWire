@@ -70,6 +70,9 @@
 }
 
 /*
+
+This code will not be supported on linux machines.
+
 .products-grid img{
   width: 50%;
    border:solid;
