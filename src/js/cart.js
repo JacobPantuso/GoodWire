@@ -1,8 +1,3 @@
-function onModifyCart() {
-    console.log("Hey"); 
-    cartNumbers(); 
-
-}
 
 let carts = document.querySelectorAll('.addtocart'); 
 
@@ -101,6 +96,15 @@ let products = [
 ]; 
 */
 
+function onModifyCart() {
+    cartNumbers(); 
+
+}
+
+for (let i = 0; i < carts.length; i++) {
+    carts[i].addEventListener('click', onModifyCart); 
+}
+
 
 function cartNumbers() {
     let productNumbers = localStorage.getItem('cartNumbers'); 
@@ -115,8 +119,4 @@ function cartNumbers() {
     }
 
 
-}
-
-for (let i = 0; i < carts.length; i++) {
-    carts[i].addEventListener('click', onModifyCart); 
 }
