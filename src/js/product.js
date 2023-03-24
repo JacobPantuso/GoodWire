@@ -114,7 +114,7 @@ export function loadProducts() {
     productButton = document.createElement("button");
     productButton.className = "product-button";
     productButton.id = "prod" + (i+1);
-    productButton.innerHTML = "Add to cart";
+    productButton.innerHTML = "Add to Cart";
   }
 }
 

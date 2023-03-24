@@ -80,11 +80,38 @@ window.onload = function() {
 
     if (window.location.href.includes('products.html')) {
         products.loadProducts();
+<<<<<<< HEAD
         for (var i = 0; i < prodArray.length; i++) {
             var prodButton = document.getElementById('prod'+(i+1));
             prodButton.addEventListener('click', () => {
                 cartNumbers(prodArray[i]);
             })
+=======
+        let nums = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+        for (var i = 0; i < prodArray.length; i ++) {
+            document.getElementById('prod'+(i+1)).addEventListener('click', (function(i) {
+                return function () {
+                    var prodButton = document.getElementById('prod'+(i+1));
+                    
+
+                    // When you click Add to cart, the else statement will run
+
+                    if (nums[i] %2 === 0){
+                        prodButton.innerHTML = "Add to Cart"
+                        prodButton.style.backgroundColor = "";
+                        nums[i]--;
+                        
+                    }
+                      else{
+                        prodButton.innerHTML = "Remove from Cart"
+                        prodButton.style.backgroundColor = "rgb(99 157 41)";
+                        nums[i]++;
+                        
+                      }
+                      
+                };
+            }(i)));
+>>>>>>> c8724d7663604d667949cefbdb79e8e162d4dcb3
         }
                 
     }
@@ -262,8 +289,8 @@ if (window.location.href.includes("account.html")) {
     document.getElementById('order-history').addEventListener('click', function() {
         window.location.href = "order-history.html";
     });
-    document.getElementById('payment-info').addEventListener('click', function() {
-        window.location.href = "payment-information.html";
+    document.getElementById('contact-info').addEventListener('click', function() {
+        window.location.href = "contact.html";
     });
     document.getElementById('personal-info').addEventListener('click', function() {
         window.location.href = "personal-information.html";
