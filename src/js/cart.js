@@ -1,4 +1,4 @@
-let carts = document.querySelectorAll('.fas fa-cart-plus'); 
+let carts = document.querySelectorAll('.addtocart'); 
 
 for (let i = 0; i < carts.length; i++) {
    carts[i].addEventListener('click', () => {
