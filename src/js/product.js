@@ -1,5 +1,5 @@
 var products = [];
-export class Product {
+class Product {
     constructor(name, id, category, price) {
         this.name = name;
         this.price = price;
@@ -88,6 +88,7 @@ const prod16button = document.querySelector('prod16')
 const prod17button = document.querySelector('prod17')
 
 //Assign each product button its appropriate product object
+/*
 prod0button.setAttribute("data-prod0", JSON.stringify(prod0));
 prod1button.setAttribute("data-prod1", JSON.stringify(prod1));
 prod2button.setAttribute("data-prod2", JSON.stringify(prod2));
@@ -106,7 +107,7 @@ prod14button.setAttribute("data-prod14", JSON.stringify(prod14));
 prod15button.setAttribute("data-prod15", JSON.stringify(prod15));
 prod16button.setAttribute("data-prod16", JSON.stringify(prod16));
 prod17button.setAttribute("data-prod17", JSON.stringify(prod17));
-
+*/
 
 // to retrieve the object from the div later, you can use:
 // let retrievedObject = JSON.parse(myDiv.getAttribute("data-prodNUMBER"));
