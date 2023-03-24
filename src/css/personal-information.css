@@ -61,6 +61,8 @@
 
 #name-change {
     display: none;
+    margin: auto;
+    margin-top: 0px;
 }
 
 #email-change {
