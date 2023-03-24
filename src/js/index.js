@@ -78,7 +78,6 @@ window.onload = function() {
 
     if (window.location.href.includes('products.html')) {
         products.loadProducts();
-
         for (var i = 0; i < prodArray.length; i ++) {
             var prodButton = document.getElementById('prod'+(i+1));
             prodButton.addEventListener('click', (function(i) {
