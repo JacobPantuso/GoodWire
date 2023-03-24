@@ -88,14 +88,14 @@ window.onload = function() {
                     // When you click Add to cart, the else statement will run
 
                     if (nums[i] %2 === 0){
-                        prodButton.innerHTML = "Add to cart"
+                        prodButton.innerHTML = "Add to Cart"
                         prodButton.style.backgroundColor = "";
                         nums[i]--;
                         
                     }
                       else{
-                        prodButton.innerHTML = "Added"
-                        prodButton.style.backgroundColor = "#7FFF00";
+                        prodButton.innerHTML = "Remove from Cart"
+                        prodButton.style.backgroundColor = "rgb(99 157 41)";
                         nums[i]++;
                         
                       }
