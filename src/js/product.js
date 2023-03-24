@@ -94,7 +94,7 @@ export function loadProducts() {
       break;
     }
     productDiv.id = products[i].getImagePath().split(".")[0]
-    productImage.src = "../src/img/" + products[i].imagePath;
+    productImage.src = "src/img/" + products[i].imagePath;
     productName.innerHTML = products[i].name;
     productPrice.innerHTML = "$" + products[i].price;
     productButton.id = "prod" + (i+1);
