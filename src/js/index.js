@@ -78,10 +78,28 @@ window.onload = function() {
 
     if (window.location.href.includes('products.html')) {
         products.loadProducts();
+        let nums = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         for (var i = 0; i < prodArray.length; i ++) {
             document.getElementById('prod'+(i+1)).addEventListener('click', (function(i) {
                 return function () {
                     var prodButton = document.getElementById('prod'+(i+1));
+                    
+
+                    // When you click Add to cart, the else statement will run
+
+                    if (nums[i] %2 === 0){
+                        prodButton.innerHTML = "Add to cart"
+                        prodButton.style.backgroundColor = "";
+                        nums[i]--;
+                        
+                    }
+                      else{
+                        prodButton.innerHTML = "Added"
+                        prodButton.style.backgroundColor = "#7FFF00";
+                        nums[i]++;
+                        
+                      }
+                      
                 };
             }(i)));
         }
