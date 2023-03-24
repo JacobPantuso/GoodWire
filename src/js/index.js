@@ -1,5 +1,7 @@
 import * as account from './account.js';
 import * as products from './product.js';
+import * as cart from './cart.js';
+
 
 function openDropdown(element) {
     document.getElementById(element).classList.toggle("show");
@@ -78,14 +80,13 @@ window.onload = function() {
 
     if (window.location.href.includes('products.html')) {
         products.loadProducts();
-        for (var i = 0; i < prodArray.length; i ++) {
+        for (var i = 0; i < prodArray.length; i++) {
             var prodButton = document.getElementById('prod'+(i+1));
-            prodButton.addEventListener('click', (function(i) {
-                return function () {
-                    console.log(prodArray[i]);
-                };
-            }(i)));
+            prodButton.addEventListener('click', () => {
+                cartNumbers(prodArray[i]);
+            })
         }
+                
     }
 
     if (window.location.href.includes('account.html')) {
