@@ -1,42 +1,77 @@
 .products-block{
-    height:120px;
-    position: absolute;
-    left:0;
-    right: 0;
-    scroll-margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  color: black;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .products-block .title{
-    margin-top: 35px;
-    font-weight: 700;
     font-size: 35px;
     text-align: center;
     color: black;
 
 }
 
-.products-block .text{
-    text-align: center;
-    margin-top:10px;
-    color: black;
+#product-grid {
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  gap: 2rem;
 }
 
-.products-grid{
-    margin-top: 50px;
-    display: grid;
-    grid-template-columns: 250px 250px 250px;
-    grid-auto-rows: 1fr;
-    column-gap: 60px;
-    row-gap: 100px;
-    justify-content: center;
-    padding-bottom: 100px;
-    
- 
+.product-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
+.product {
+  display: flex;
+  flex-direction: column;
+  color: black;
+  width: 33%;
+}
+
+.product img {
+  width: 230px;
+  height: 230px;
+  margin: auto;
+}
+
+.product-button {
+  width: 30%;
+  margin: auto;
+  padding: 6px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(29, 29, 75);
+  transition: 0.33s;
+}
+
+.product-button:hover {
+  background-color: rgb(54, 54, 159);
+  cursor: pointer;
+  scale: 1.1;
+}
+
+
+
+.product-name {
+  margin-bottom: 0px;
+  font-weight: bold;
+}
+
+.product-price {
+  margin-top: 5px;
+}
+
+/*
 .products-grid img{
-   width: 100%;
-   height: 300px;
+  width: 50%;
    border:solid;
    border-width: 0.1px;
    border-color: rgba(0, 0, 0, 0.1);
@@ -45,14 +80,15 @@
    
 }
 .product{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
     animation: bounce 2.5s infinite linear;
     display: inline-block;}
 
-@keyframes bounce{
-  
+/*@keyframes bounce{
     50% { transform: translateY(-10px) }
- 
- 
 }
   
 .products-grid img:hover{
@@ -91,7 +127,6 @@
     border-radius:15px;
     text-align: center;
     display: block;
-    margin-left: 63px;
     margin-top: 5px;
     border:none;
     font-size:10px;
@@ -126,3 +161,4 @@
     font-size: 15px;
   }
  
+  */

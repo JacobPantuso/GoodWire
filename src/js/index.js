@@ -54,7 +54,7 @@ function openDropdown(element) {
 
 window.onload = function() {
     account.receiveStorage();
-
+    products.initiateProducts();
     if (window.location.href.includes('contact.html')) {
         document.getElementById('contact-submit').addEventListener('click', function() {
             if (document.getElementById('fname').value == '') {
@@ -76,6 +76,9 @@ window.onload = function() {
         });
     }
 
+    if (window.location.href.includes('products.html')) {
+        products.loadProducts();
+    }
 
     if (window.location.href.includes('account.html')) {
         if (sessionStorage.getItem('name') == null) {

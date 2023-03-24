@@ -1,10 +1,11 @@
 var products = [];
-class Product {
-    constructor(name, id, category, price) {
+export class Product {
+    constructor(name, id, category, price, imagePath) {
         this.name = name;
         this.price = price;
         this.id = id;
         this.category = category;
+        this.imagePath = imagePath
         products.push(this);
       }
 
@@ -16,7 +17,10 @@ class Product {
         return this.price;
       }
 
-    
+      getImagePath() {
+        return this.imagePath;
+      }
+
       getId() {
         return this.id;
       }
@@ -33,39 +37,84 @@ class Product {
         this.price = price;
       }
 
-     
       setId(id) {
         this.id = id;
       }
 
       setCategory(category){
-        this.category = this.category;
+        this.category = category;
       }
+}
 
+export function initiateProducts() {
+  new Product("Apple iPhone 14",1,"phone", 1299, "iphone14.jpeg");
+  new Product("Samsung Galaxy S23",2,"phone", 999, "galaxy.jpeg");
+  new Product("Google Pixel 7",3,"phone", 999, "pixel7.jpeg");
+  new Product("Apple iPad Air",4,"tablet",799, "ipad.jpeg");
+  new Product("Samsung Galaxy Tab S",5,"tablet", 250, "samsung_tablet.jpeg");
+  new Product("Lenovo Tablet P11",6,"tablet", 300, "lenovo_tablet.jpeg");
+  new Product("Apple Macbook Pro",7,"laptop", 1800, "mac_pro.jpeg");
+  new Product("Apple Macbook Air",8,"laptop", 1200, "mac_air.jpeg");
+  new Product('Dell XPS 13"',9,"laptop", 1300, "xps.jpeg");
+  new Product("Apple AirPods Pro",10,"headphones", 250, "airpods_pro.jpeg");
+  new Product("Apple AirPods Max",11,"headphones", 600, "airpods_max.jpeg");
+  new Product("Beats Studio",12,"headphones", 300, "beats.jpeg");
+  new Product('LG 65" Smart TV',13,"tv", 829, "lg_tv.jpeg");
+  new Product("Sony OLED Smart TV",14,"tv", 2399, "sony.jpeg");
+  new Product("Samsung Smart TV",15,"tv", 1300, "samsung_tv.jpeg");
+  new Product("Apple Watch",16,"watch", 400, "apple_watch.jpeg");
+  new Product("Galaxy Watch",17,"watch", 300, "samsung_watch.jpeg");
+  new Product("Pixel Watch",18,"watch", 350, "pixel_watch.jpeg");
+}
 
+export function loadProducts() {
+  var productsDiv = document.getElementById("product-grid");
+  // loop through products array and create a div for each product and append it to the productsDiv. Every 3 products create a new row
+  var rowDiv = document.createElement("div");
+  rowDiv.className = "product-row";
+  var productDiv = document.createElement("div");
+  productDiv.className = "product";
+  var productImage = document.createElement("img");
+  productImage.className = "product-image";
+  var productName = document.createElement("p");
+  productName.className = "product-name";
+  var productPrice = document.createElement("p");
+  productPrice.className = "product-price";
+  var productButton = document.createElement("button");
+  productButton.className = "product-button";
+  productButton.innerHTML = "Add to cart";
+  for (var i = 0; i <= products.length; i++) {
+    if (i % 3 == 0 && i != 0) {
+      productsDiv.appendChild(rowDiv);
+      rowDiv = document.createElement("div");
+      rowDiv.className = "product-row";
     }
-
-
-//Creating the product objects
-const prod0 = new Product("apple_iphone",1,"phone", 900);
-const prod1 = new Product("samsung_galaxy",2,"phone", 800);
-const prod2 = new Product("google_pixel",3,"phone", 700);
-const prod3 = new Product("apple_ipad",4,"tablet",400);
-const prod4 = new Product("samsung_tablet",5,"tablet", 250);
-const prod5 = new Product("google_tablet",6,"tablet", 300);
-const prod6 = new Product("macbook_pro",7,"laptop", 1800);
-const prod7 = new Product("macbook_air",8,"laptop", 1200);
-const prod8 = new Product("dell_xps15",9,"laptop", 1300);
-const prod9 = new Product("airpods_pro",10,"headphones", 250);
-const prod10 = new Product("airpods_max",11,"headphones", 600);
-const prod11 = new Product("beats_studio",12,"headphones", 300);
-const prod12 = new Product("lg_smartTV",13,"tv", 600);
-const prod13 = new Product("lg_smartTVcurved",14,"tv", 800);
-const prod14 = new Product("samsung_tv",15,"tv", 1300);
-const prod15 = new Product("apple_watch",16,"watch", 400);
-const prod16 = new Product("samsung_watch",17,"watch", 300);
-const prod17 = new Product("google_watch",18,"watch", 350);
-
+    if (i == products.length) {
+      break;
+    }
+    productDiv.id = products[i].getImagePath().split(".")[0]
+    productImage.src = "../src/img/" + products[i].imagePath;
+    productName.innerHTML = products[i].name;
+    productPrice.innerHTML = "$" + products[i].price;
+    productDiv.appendChild(productImage);
+    productDiv.appendChild(productName);
+    productDiv.appendChild(productPrice);
+    productDiv.appendChild(productButton);
+    rowDiv.appendChild(productDiv);
+    productDiv = document.createElement("div");
+    productDiv.className = "product";
+    productImage = document.createElement("img");
+    productImage.className = "product-image";
+    productName = document.createElement("p");
+    productName.className = "product-name";
+    productPrice = document.createElement("p");
+    productPrice.className = "product-price";
+    productButton = document.createElement("button");
+    productButton.className = "product-button";
+    productButton.id = "prod" + i;
+    productButton.innerHTML = "Add to cart";
+  }
+}
 
 //Add to cart button for each product
 const prod0button = document.querySelector('prod0')
