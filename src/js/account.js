@@ -100,7 +100,18 @@ class Account {
     }
 
     removeOrder(order) {
-        this.orders.splice(this.orders.indexOf(order), 1);
+        var newOrders = [];
+        for (var i = 0; i < this.orders.length; i++) {
+            if (this.orders[i].getOrderNumber() != order.getOrderNumber()) {
+                newOrders.push(this.orders[i]);
+            }
+        }
+        this.orders = newOrders;
+        updateStorage();
+    }
+
+    clearOrders() {
+        this.orders = [];
         updateStorage();
     }
 }

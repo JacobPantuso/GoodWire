@@ -1,6 +1,7 @@
 import * as account from './account.js';
 import * as products from './product.js';
 import * as cart from './cart.js';
+import * as order from './order.js';
 
 
 function openDropdown(element) {
@@ -56,6 +57,7 @@ function openDropdown(element) {
 
 window.onload = function() {
     account.receiveStorage();
+    order.receiveStorage();
     var prodArray = products.initiateProducts();
     if (window.location.href.includes('contact.html')) {
         document.getElementById('contact-submit').addEventListener('click', function() {
@@ -80,13 +82,6 @@ window.onload = function() {
 
     if (window.location.href.includes('products.html')) {
         products.loadProducts();
-<<<<<<< HEAD
-        for (var i = 0; i < prodArray.length; i++) {
-            var prodButton = document.getElementById('prod'+(i+1));
-            prodButton.addEventListener('click', () => {
-                cartNumbers(prodArray[i]);
-            })
-=======
         let nums = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
         for (var i = 0; i < prodArray.length; i ++) {
             document.getElementById('prod'+(i+1)).addEventListener('click', (function(i) {
@@ -111,7 +106,6 @@ window.onload = function() {
                       
                 };
             }(i)));
->>>>>>> c8724d7663604d667949cefbdb79e8e162d4dcb3
         }
                 
     }
@@ -140,8 +134,8 @@ window.onload = function() {
     }
 
     if (window.location.href.includes("order-history.html")) {
-        document.getElementById('order-history-description').innerHTML = "Hey " + sessionStorage.getItem('name') + ", here are your recent orders."
         var res = account.getAccountByName(sessionStorage.getItem('name'));
+        document.getElementById('order-history-description').innerHTML = "Hey " + sessionStorage.getItem('name') + ", here are your recent orders."
         var numOfOrders = res.getOrders().length;
         var numOfOrdersHTML = document.getElementById('num-of-orders')
         if (numOfOrders == 0) {
