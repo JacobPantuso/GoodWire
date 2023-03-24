@@ -65,6 +65,7 @@ export function initiateProducts() {
   new Product("Apple Watch",16,"watch", 400, "apple_watch.jpeg");
   new Product("Galaxy Watch",17,"watch", 300, "samsung_watch.jpeg");
   new Product("Pixel Watch",18,"watch", 350, "pixel_watch.jpeg");
+  return products;
 }
 
 export function loadProducts() {
@@ -96,7 +97,7 @@ export function loadProducts() {
     productImage.src = "../src/img/" + products[i].imagePath;
     productName.innerHTML = products[i].name;
     productPrice.innerHTML = "$" + products[i].price;
-    productButton.id = "prod" + i;
+    productButton.id = "prod" + (i+1);
     productDiv.appendChild(productImage);
     productDiv.appendChild(productName);
     productDiv.appendChild(productPrice);
@@ -112,12 +113,12 @@ export function loadProducts() {
     productPrice.className = "product-price";
     productButton = document.createElement("button");
     productButton.className = "product-button";
-    productButton.id = "prod" + i;
+    productButton.id = "prod" + (i+1);
     productButton.innerHTML = "Add to cart";
   }
 }
 
-//Add to cart button for each product
+/*
 const prod0button = document.querySelector('prod0')
 const prod1button = document.querySelector('prod1')
 const prod2button = document.querySelector('prod2')
@@ -137,9 +138,6 @@ const prod15button = document.querySelector('prod15')
 const prod16button = document.querySelector('prod16')
 const prod17button = document.querySelector('prod17')
 
-
-//Assign each product button its appropriate product object
-/*
 prod0button.setAttribute("data-prod0", JSON.stringify(prod0));
 prod1button.setAttribute("data-prod1", JSON.stringify(prod1));
 prod2button.setAttribute("data-prod2", JSON.stringify(prod2));
