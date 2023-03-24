@@ -121,3 +121,32 @@ hr {
     border-radius: 10px;
     background-color: rgb(38, 38, 126);
 }
+
+.prod-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: white;
+    width: 90%;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.prod-row img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+}
+
+.prod-btns button {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    color:rgb(29, 29, 75);
+    cursor: pointer;
+}
+
+.left {
+    display: flex;
+    flex-direction: row;
+}
