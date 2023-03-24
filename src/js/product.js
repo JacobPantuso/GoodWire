@@ -87,6 +87,7 @@ const prod15button = document.querySelector('prod15')
 const prod16button = document.querySelector('prod16')
 const prod17button = document.querySelector('prod17')
 
+
 //Assign each product button its appropriate product object
 /*
 prod0button.setAttribute("data-prod0", JSON.stringify(prod0));
