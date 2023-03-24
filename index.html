@@ -10,6 +10,7 @@
     <script type="module" src="src/js/account.js"></script>
     <link rel="icon" href="src/img/logo.png" type="image/png">
     <link rel="stylesheet" href="src/css/index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <title>GoodWire | Home</title>
 </head>
 <body>
@@ -75,9 +76,17 @@
                 </div>
             </div>
         </div>
-        <div class="index-content">
+        <div class="index-content" id="splash">
+            <script>
+                $(document).ready(function() {
+                    $( "#brand-1" ).hide(2000, function(){
+                        document.getElementById("splash").style.backgroundColor = "white"
+                        $( "#splash" ).hide(1000);
+                    });
+                    });
+            </script>
             <h1 class="logo-header">
-                <span class="logo">Good</span><span class="logo">Wire</span>
+                <div id="brand-1"><img src="src/img/logo.png" alt="logo"><p class="logo" style="color: white;">GoodWire</p></div>
             </h1>
         </div>
     </div>
