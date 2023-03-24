@@ -1,9 +1,12 @@
 function onModifyCart() {
+    console.log("Hey"); 
     cartNumbers(); 
 
 }
+
 let carts = document.querySelectorAll('.addtocart'); 
 
+/*
 let products = [
     { name: 'Apple iPhone 14', 
       id: 1,
@@ -95,15 +98,25 @@ let products = [
       price: 350,
       inCart: 0
     }
-]
+]; 
+*/
 
-for (let i = 0; i < carts.length; i++) {
-    carts[i].addEventListener('click', onModifyCart); 
-}
 
 function cartNumbers() {
     let productNumbers = localStorage.getItem('cartNumbers'); 
-    
-    localStorage.setItem('cartNumbers', 1); 
 
+    productNumbers = parseInt(productNumbers); 
+
+    if (productNumbers) {
+        localStorage.setItem('cartNumbers', productNumbers + 1); 
+    }
+    else {
+        localStorage.setItem('cartNumbers', 1); 
+    }
+
+
+}
+
+for (let i = 0; i < carts.length; i++) {
+    carts[i].addEventListener('click', onModifyCart); 
 }
