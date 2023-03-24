@@ -47,24 +47,24 @@ export class Product {
 
 
 //Creating the product objects
-const prod0 = new Product(apple_iphone,1,phone, 900)
-const prod1 = new Product(samsung_galaxy,2,phone, 800)
-const prod2 = new Product(google_pixel,3,phone, 700)
-const prod3 = new Product(apple_ipad,4,tablet,400)
-const prod4 = new Product(samsung_tablet,5,tablet, 250)
-const prod5 = new Product(google_tablet,6,tablet, 300)
-const prod6 = new Product(macbook_pro,7,laptop, 1800)
-const prod7 = new Product(macbook_air,8,laptop, 1200)
-const prod8 = new Product(dell_xps15,9,laptop, 1300)
-const prod9 = new Product(airpods_pro,10,headphones, 250)
-const prod10 = new Product(airpods_max,11,headphones, 600)
-const prod11 = new Product(beats_studio,12,headphones, 300)
-const prod12 = new Product(lg_smartTV,13,tv, 600)
-const prod13 = new Product(lg_smartTVcurved,14,tv, 800)
-const prod14 = new Product(samsung_tv,15,tv, 1300)
-const prod15 = new Product(apple_watch,16,watch, 400)
-const prod16 = new Product(samsung_watch,17,watch, 300)
-const prod17 = new Product(google_watch,18,watch, 350)
+const prod0 = new Product("apple_iphone",1,"phone", 900);
+const prod1 = new Product("samsung_galaxy",2,"phone", 800);
+const prod2 = new Product("google_pixel",3,"phone", 700);
+const prod3 = new Product("apple_ipad",4,"tablet",400);
+const prod4 = new Product("samsung_tablet",5,"tablet", 250);
+const prod5 = new Product("google_tablet",6,"tablet", 300);
+const prod6 = new Product("macbook_pro",7,"laptop", 1800);
+const prod7 = new Product("macbook_air",8,"laptop", 1200);
+const prod8 = new Product("dell_xps15",9,"laptop", 1300);
+const prod9 = new Product("airpods_pro",10,"headphones", 250);
+const prod10 = new Product("airpods_max",11,"headphones", 600);
+const prod11 = new Product("beats_studio",12,"headphones", 300);
+const prod12 = new Product("lg_smartTV",13,"tv", 600);
+const prod13 = new Product("lg_smartTVcurved",14,"tv", 800);
+const prod14 = new Product("samsung_tv",15,"tv", 1300);
+const prod15 = new Product("apple_watch",16,"watch", 400);
+const prod16 = new Product("samsung_watch",17,"watch", 300);
+const prod17 = new Product("google_watch",18,"watch", 350);
 
 
 //Add to cart button for each product
