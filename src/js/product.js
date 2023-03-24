@@ -109,5 +109,5 @@ prod17button.setAttribute("data-prod17", JSON.stringify(prod17));
 
 
 // to retrieve the object from the div later, you can use:
-let retrievedObject = JSON.parse(myDiv.getAttribute("data-prodNUMBER"));
-console.log(retrievedObject);
+// let retrievedObject = JSON.parse(myDiv.getAttribute("data-prodNUMBER"));
+// console.log(retrievedObject);
