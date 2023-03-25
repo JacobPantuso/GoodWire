@@ -1,4 +1,6 @@
 export function cartNumbers(product) {
+
+    console.log(product);
     
     let productNumbers = localStorage.getItem('cartNumbers'); 
     productNumbers = parseInt(productNumbers); 
@@ -95,7 +97,7 @@ function displayCart() {
             productContainer.innerHTML += `
             <div class="product">
                 <ion-icon name="close-circle-outline"></ion-icon>
-                <img src="src/img/${item.tag}.jpeg">
+                <img src="src/img/${item.imagePath}">
                 <span>${item.name}</span>
             </div>
             `

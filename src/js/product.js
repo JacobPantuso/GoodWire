@@ -1,13 +1,12 @@
 var products = [];
 export class Product {
-    constructor(name, id, category, price, imagePath, inCart, tag) {
+    constructor(name, id, category, price, imagePath, inCart) {
         this.name = name;
         this.price = price;
         this.id = id;
         this.category = category;
         this.imagePath = imagePath; 
         this.inCart = inCart; 
-        this.tag = tag; 
         products.push(this);
       }
 
@@ -49,24 +48,24 @@ export class Product {
 }
 
 export function initiateProducts() {
-  new Product("Apple iPhone 14",1,"phone", 1299, "iphone14.jpeg", 0, "iphone14");
-  new Product("Samsung Galaxy S23",2,"phone", 999, "galaxy.jpeg", 0, "galaxy");
-  new Product("Google Pixel 7",3,"phone", 999, "pixel7.jpeg", 0, "pixel7");
-  new Product("Apple iPad Air",4,"tablet",799, "ipad.jpeg", 0, "ipad");
-  new Product("Samsung Galaxy Tab S",5,"tablet", 250, "samsung_tablet.jpeg", 0, "samsung_tablet");
-  new Product("Lenovo Tablet P11",6,"tablet", 300, "lenovo_tablet.jpeg", 0, "lenovo_tablet");
-  new Product("Apple Macbook Pro",7,"laptop", 1800, "mac_pro.jpeg", 0,"mac_pro");
-  new Product("Apple Macbook Air",8,"laptop", 1200, "mac_air.jpeg", 0, "mac_air");
-  new Product('Dell XPS 13"',9,"laptop", 1300, "xps.jpeg", 0, "xps");
-  new Product("Apple AirPods Pro",10,"headphones", 250, "airpods_pro.jpeg", 0, "airpods_pro");
-  new Product("Apple AirPods Max",11,"headphones", 600, "airpods_max.jpeg", 0, "airpods_max");
-  new Product("Beats Studio",12,"headphones", 300, "beats.jpeg", 0, "beats");
-  new Product('LG 65" Smart TV',13,"tv", 829, "lg_tv.jpeg", 0, "lg_tv");
-  new Product("Sony OLED Smart TV",14,"tv", 2399, "sony.jpeg", 0, "sony");
-  new Product("Samsung Smart TV",15,"tv", 1300, "samsung_tv.jpeg", 0, "samsung_tv");
-  new Product("Apple Watch",16,"watch", 400, "apple_watch.jpeg", 0,"apple_watch");
-  new Product("Galaxy Watch",17,"watch", 300, "samsung_watch.jpeg", 0, "samsung_watch");
-  new Product("Pixel Watch",18,"watch", 350, "pixel_watch.jpeg", 0, "pixel_watch");
+  new Product("Apple iPhone 14",1,"phone", 1299, "iphone14.jpeg", 0);
+  new Product("Samsung Galaxy S23",2,"phone", 999, "galaxy.jpeg", 0);
+  new Product("Google Pixel 7",3,"phone", 999, "pixel7.jpeg", 0);
+  new Product("Apple iPad Air",4,"tablet",799, "ipad.jpeg", 0);
+  new Product("Samsung Galaxy Tab S",5,"tablet", 250, "samsung_tablet.jpeg", 0);
+  new Product("Lenovo Tablet P11",6,"tablet", 300, "lenovo_tablet.jpeg", 0);
+  new Product("Apple Macbook Pro",7,"laptop", 1800, "mac_pro.jpeg", 0);
+  new Product("Apple Macbook Air",8,"laptop", 1200, "mac_air.jpeg", 0);
+  new Product('Dell XPS 13"',9,"laptop", 1300, "xps.jpeg", 0);
+  new Product("Apple AirPods Pro",10,"headphones", 250, "airpods_pro.jpeg", 0);
+  new Product("Apple AirPods Max",11,"headphones", 600, "airpods_max.jpeg", 0);
+  new Product("Beats Studio",12,"headphones", 300, "beats.jpeg", 0);
+  new Product('LG 65" Smart TV',13,"tv", 829, "lg_tv.jpeg", 0);
+  new Product("Sony OLED Smart TV",14,"tv", 2399, "sony.jpeg", 0);
+  new Product("Samsung Smart TV",15,"tv", 1300, "samsung_tv.jpeg", 0);
+  new Product("Apple Watch",16,"watch", 400, "apple_watch.jpeg", 0);
+  new Product("Galaxy Watch",17,"watch", 300, "samsung_watch.jpeg", 0);
+  new Product("Pixel Watch",18,"watch", 350, "pixel_watch.jpeg", 0);
   return products;
 }
 
