@@ -3,7 +3,6 @@ import * as products from './product.js';
 import * as cart from './cart.js';
 import * as order from './order.js';
 import * as payment from './payment.js';
-import { assert } from './tests.js'
 
 function openDropdown(element) {
     document.getElementById(element).classList.toggle("show");
@@ -57,7 +56,6 @@ window.onclick = function (e) {
 
 
 window.onload = function () {
-    assert();
     account.receiveStorage();
     order.receiveStorage();
     cart.initiateCart();
