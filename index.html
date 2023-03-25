@@ -75,12 +75,24 @@
                 </div>
             </div>
         </div>
-        <div class="index-content">
+        <div class="index-content main" id="splash">
             <h1 class="logo-header">
-                <span class="logo">Good</span><span class="logo">Wire</span>
+                <div id="brand-1"><img src="src/img/logo.png" alt="logo"><p class="splash">GoodWire</p><p id="smalltext" class="splash small">New or used, we're making an impact</p></div>
             </h1>
         </div>
     </div>
 </body>
-<script type="text/javascript" src="src/js/cart.js"></script>
+<script>
+        // fade in the brand-1 slowly
+        document.getElementById("brand-1").style.transition = "1.6s";
+        setTimeout(function() {
+            document.getElementById("brand-1").style.opacity = "1";
+        }, 300);
+        // fade in the smalltext slowly
+        document.getElementById("smalltext").style.transition = "2.6s";
+        setTimeout(function() {
+            document.getElementById("smalltext").style.opacity = "1";
+        }, 300);
+</script>
+<script type="module" src="src/js/cart.js"></script>
 </html>
