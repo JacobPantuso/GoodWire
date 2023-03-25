@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet">
-        <script src="https://kit.fontawesome.com/f7c8be4779.js" crossorigin="anonymous"></script>
-        <link rel="icon" href="src/img/logo.png" type="image/png">
-        <link rel="stylesheet" href="src/css/index.css">
-        <link rel="stylesheet" href="src/css/account.css">
-        <link rel="stylesheet" href="src/css/order-history.css">
-        <title>GoodWire | Account</title>
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f7c8be4779.js" crossorigin="anonymous"></script>
+    <script type="module" src="src/js/index.js"></script>
+    <script type="module" src="src/js/account.js"></script>
+    <script type="module" src="src/js/cart.js"></script>
+    <link rel="icon" href="src/img/logo.png" type="image/png">
+    <link rel="stylesheet" href="src/css/index.css">
+    <link rel="stylesheet" href="src/css/contact.css">
+    <title>GoodWire | Contact Us</title>
+</head>
+<body>
     <div class="index">
         <div class="navbar">
             <div class="navbar-top">
@@ -75,26 +77,23 @@
                 </div>
             </div>
         </div>
-        <div class="order-history content">
-            <div class="left-content">
-                <a class="back" href="account.html"><i class="fa-solid fa-arrow-left"></i> &nbsp; Back to Account</a>
-                <a class="category selected" href="order-history.html"><i class="fa-solid fa-rotate-left"></i> &nbsp; Order History</a>
-                <a class="category" href="personal-information.html"><i class="fa-solid fa-user-circle"></i> &nbsp; Personal Information</a>
-            </div>
-            <div class="right-col">
-                <h1>Order History</h1>
-                <p style="margin-bottom: 5px;" id="order-history-description"></p>
-                <p style="font-size: 14px; margin-top: 0px;">Guest orders can be tracked when logged out.</p>
-                <div id="orders" class="order-list">
-                    <p id="num-of-orders"></p>
+        <div class="index-content">
+            <form id="contact-form">
+                <h1>Tech Support</h1>
+                <p>Having an issue with our shopping system? We pride ourselves on our easy-to-use and accessible webpage. If you do run into <em>any</em> issues, get in touch with us below.</p>
+                <div class="row">
+                    <input type="text" id="fname" name="firstname" placeholder="First Name">
+                    <input type="text" id="lname" name="lastname" placeholder="Last Name">
                 </div>
+                <input type="text" id="email" name="email" placeholder="Issue">
+                <textarea type="text" id="subject" name="subject" placeholder="More Details"></textarea>
+                <button id="contact-submit" type="button">Submit</button>
+            </form>
+            <div id="success-submit" class="form-submitted">
+                <h1>Thank you for informing us!</h1>
+                <p>We'll investigate this reported issue and if we require more information we will get in touch!</p>
             </div>
         </div>
     </div>
 </body>
-<script src="src/js/bundle.js"></script>
-<script type="module" src="src/js/index.js"></script>
-<script type="module" src="src/js/account.js"></script>
-<script type="module" src="src/js/order.js"></script>
-<script type="module" src="src/js/cart.js"></script>
 </html>

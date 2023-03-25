@@ -8,8 +8,10 @@
         <script src="https://kit.fontawesome.com/f7c8be4779.js" crossorigin="anonymous"></script>
         <script type="module" src="src/js/index.js"></script>
         <link rel="icon" href="src/img/logo.png" type="image/png">
+        <link rel="stylesheet" href="src/css/order-history.css">
         <link rel="stylesheet" href="src/css/index.css">
         <link rel="stylesheet" href="src/css/login.css">
+        <link rel="stylesheet" href="src/css/track-order.css">
         <title>GoodWire | Account</title>
     </head>
 <body>
@@ -77,6 +79,7 @@
         </div>
         <div class="order-tracking-form container">
             <div class="order-tracking-form content">
+                <form onsubmit="return false;">
                     <h1>Order Tracking</h1>
                     <p id="description">Enter your order number below to track your order</p>
                     <div class="tracking-input">
@@ -84,9 +87,34 @@
                         <input type="text" name="order-number" id="order-number" placeholder="Enter your order number">
                     </div>
                     <div class="btm-row">
-                        <button type="button" onclick="validateRegister()">Track Order</button>
+                        <button id="track-order" type="button">Track Order</button>
                     </div>
                 </form>
+                <div class="order-card">
+                    <div id="card-content" class="order-card-content">
+                        <div class="top-info">
+                            <div class="left-top">
+                                <h3 id="order-num"></h3>
+                                <p id="date-placed"></p>
+                            </div>
+                            <div class="right-top">
+                                <p id="price"></p>
+                            </div>
+                        </div>
+                        <div id="product-details">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="order-controls">
+                        <div class="left">
+                            <h4 id="status"></h4>
+                            <div class="shipping-bar">
+                                <div class="shipping-progress"></div>
+                            </div>
+                        </div>
+                        <button id="cancel">Cancel Order</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

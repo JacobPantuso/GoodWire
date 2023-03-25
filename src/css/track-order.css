@@ -1,0 +1,14 @@
+.order-card {
+    width: 50%;
+    text-align: left;
+    display: none;
+    padding: 1.5rem;
+}
+
+form {
+    padding: 20px;
+}
+
+.tracking-input {
+    width: 100%;
+}

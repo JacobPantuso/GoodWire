@@ -2,7 +2,7 @@ import * as account from "./account.js";
 
 var orders = [];
 export class Order {
-    constructor(orderNumber, orderDate, cart, status, email) {
+    constructor(orderNumber, orderDate, cart, status, email, total) {
         this.orderNumber = orderNumber;
         if (orderDate == null) {
             this.orderDate = new Date().toDateString() + ' @ ' + new Date().toLocaleTimeString();
@@ -11,8 +11,8 @@ export class Order {
         }
         this.cart = cart;
         this.status = status;
-        //this.price = cart.getTotalPrice();
         this.email = email;
+        this.total = total;
     }
 
     getOrderNumber() {
@@ -35,15 +35,15 @@ export class Order {
 
 }
 
-export function newOrder(orderNumber, cart, status, email) {
-    if (JSON.parse(sessionStorage.getItem('guest')) == 'true') {
-        var order = new Order(orderNumber, null, cart, status, email);
+export function newOrder(orderNumber, cart, status, email, price) {
+    if (sessionStorage.getItem('guest') == 'true') {
+        var order = new Order(orderNumber, null, cart, status, email, price);
         orders.push(order);
         localStorage.setItem('orders', JSON.stringify(orders));
         return order;
     } else {
         var res = account.getAccountByName(sessionStorage.getItem('name'));
-        var order = new Order(orderNumber, null, cart, status, email);
+        var order = new Order(orderNumber, null, cart, status, email, price);
         res.addOrder(order);
         orders.push(order);
         return order;
@@ -82,6 +82,7 @@ export function getOrder(orderNumber) {
             return orders[i];
         }
     }
+    return null;
 }
 
 export function receiveStorage() {
@@ -91,7 +92,7 @@ export function receiveStorage() {
             localStorage.setItem('orders') = [];
         } else {
             for (var i = 0; i < retrievedOrders.length; i++) {
-                orders.push(new Order(retrievedOrders[i].orderNumber, retrievedOrders[i].orderDate, retrievedOrders[i].cart, retrievedOrders[i].status, retrievedOrders[i].email));
+                orders.push(new Order(retrievedOrders[i].orderNumber, retrievedOrders[i].orderDate, retrievedOrders[i].cart, retrievedOrders[i].status, retrievedOrders[i].email, retrievedOrders[i].total));
             }
         }
     } else if (sessionStorage.getItem('guest') == 'false') {
@@ -99,8 +100,8 @@ export function receiveStorage() {
         var retrievedOrders = res.getOrders();
         var newOrders = []
         for (var i = 0; i < res.orders.length; i++) {
-            orders.push(new Order(retrievedOrders[i].orderNumber, retrievedOrders[i].orderDate, retrievedOrders[i].cart, retrievedOrders[i].status, retrievedOrders[i].email));
-            newOrders.push(new Order(retrievedOrders[i].orderNumber, retrievedOrders[i].orderDate, retrievedOrders[i].cart, retrievedOrders[i].status, retrievedOrders[i].email));
+            orders.push(new Order(retrievedOrders[i].orderNumber, retrievedOrders[i].orderDate, retrievedOrders[i].cart, retrievedOrders[i].status, retrievedOrders[i].email, retrievedOrders[i].total));
+            newOrders.push(new Order(retrievedOrders[i].orderNumber, retrievedOrders[i].orderDate, retrievedOrders[i].cart, retrievedOrders[i].status, retrievedOrders[i].email, retrievedOrders[i].total));
         }
         res.clearOrders();
         for (var i = 0; i < newOrders.length; i++) {

@@ -2,6 +2,8 @@ import * as account from './account.js';
 import * as products from './product.js';
 import * as cart from './cart.js';
 import * as order from './order.js';
+import * as payment from './payment.js';
+import { assert } from './tests.js'
 
 function openDropdown(element) {
     document.getElementById(element).classList.toggle("show");
@@ -28,7 +30,7 @@ function openDropdown(element) {
 }
 
 window.onclick = function (e) {
-    if (!e.target.matches('.dropbtn')) {
+    if (!e.target.matches('.dropbtn') && (!window.location.href.includes("payment.html")) && !window.location.href.includes("process-payment.html") && !window.location.href.includes("payment-success.html")){
         var products = document.getElementById("products");
         var productsCaret = document.getElementById("products-caret");
         if (products.classList.contains('show')) {
@@ -55,10 +57,15 @@ window.onclick = function (e) {
 
 
 window.onload = function () {
+    assert();
     account.receiveStorage();
     order.receiveStorage();
+    cart.initiateCart();
+    if (!window.location.href.includes('payment')) {
+        cart.onLoadCartNumbers();
+    }
     var prodArray = products.initiateProducts();
-    if (window.location.href.includes('contact.html')) {
+    if (window.location.href.includes('contact.html') || window.location.href.includes('warranty.html') || window.location.href.includes('tech-support.html')) {
         document.getElementById('contact-submit').addEventListener('click', function () {
             if (document.getElementById('fname').value == '') {
                 document.getElementById('fname').style.border = "1px solid red";
@@ -119,7 +126,7 @@ window.onload = function () {
             window.location.href = 'account.html';
         }
     }
-    if (sessionStorage.getItem('name') != null) {
+    if (sessionStorage.getItem('name') != null && !window.location.href.includes("payment.html")) {
         document.getElementById('account').innerHTML = sessionStorage.getItem('name');
         document.getElementById('region').innerHTML = "Logout";
         document.getElementById('region').addEventListener('click', function () {
@@ -131,6 +138,7 @@ window.onload = function () {
 
     if (window.location.href.includes("order-history.html")) {
         var res = account.getAccountByName(sessionStorage.getItem('name'));
+        //order.newOrder(12, [prodArray[6],prodArray[13]], "Shipped", "test", 433);
         document.getElementById('order-history-description').innerHTML = "Hey " + sessionStorage.getItem('name') + ", here are your recent orders."
         var numOfOrders = res.getOrders().length;
         var numOfOrdersHTML = document.getElementById('num-of-orders')
@@ -163,7 +171,7 @@ window.onload = function () {
                 rightTop.className = "right-top";
                 var price = document.createElement('p');
                 price.id = "price";
-                price.innerHTML = "$" + Order.price;
+                price.innerHTML = "$" + Order.total;
                 leftTop.appendChild(orderNumber);
                 leftTop.appendChild(datePlaced);
                 rightTop.appendChild(price);
@@ -202,11 +210,13 @@ window.onload = function () {
                 shippingProgress.className = "shipping-progress";
                 shippingProgress.style.width = Order.getStatus();
                 var orderCancel = document.createElement('button');
-                orderCancel.id = "order-cancel";
+                orderCancel.id = Order.orderNumber;
                 orderCancel.className = "cancel";
                 orderCancel.innerHTML = "Cancel Order";
                 orderCancel.addEventListener('click', (function (i) {
                     return function () {
+                        Order = orders[i];
+                        console.log(Order.getOrderNumber());
                         order.cancelOrder(Order.getOrderNumber());
                         window.location.href = 'order-history.html';
                     }
@@ -316,6 +326,52 @@ window.onload = function () {
             document.getElementById('address').innerHTML = "Shipping Address: " + res.getAddress();
         }
     }
+
+    if (window.location.href.includes('track-order.html')) {
+        if (sessionStorage.getItem('guest') == 'false') {
+            window.location.href = "order-history.html";
+        }
+        document.getElementById('track-order').addEventListener('click', function () {
+            var orderNum = document.getElementById('order-number').value;
+            if (orderNum == '' || order.getOrder(orderNum) == null) {
+                document.getElementById('order-number').style.border = "1px solid red";
+            } else {
+                document.getElementById('order-number').disabled = true;
+                document.getElementById('track-order').innerHTML = "<i class='fa-solid fa-redo'></i> Restart Search";
+                document.getElementById('description').innerHTML = "To track a different order, press the button below.";
+                document.getElementById('track-order').addEventListener('click', function () {
+                    window.location.href = "track-order.html";
+                });
+                document.getElementById('order-num').innerHTML = "Order #" + order.getOrder(orderNum).orderNumber;
+                document.getElementById('date-placed').innerHTML = "Placed on " + order.getOrder(orderNum).orderDate;
+                document.getElementById('price').innerHTML = "$" + order.getOrder(orderNum).total;
+                for (var i = 0; i < order.getOrder(orderNum).cart.length; i++) {
+                    var productDetails = document.getElementById('product-details').cloneNode(true);
+                    var itemImage = document.createElement('img');
+                    itemImage.src = "src/img/" + order.getOrder(orderNum).cart[i].imagePath;
+                    var rightDetails = document.createElement('div');
+                    rightDetails.id = "right-details";
+                    var itemName = document.createElement('h4');
+                    itemName.innerHTML = order.getOrder(orderNum).cart[i].name;
+                    var itemQuantity = document.createElement('p');
+                    itemQuantity.innerHTML = "Quantity: " + order.getOrder(orderNum).cart[i].inCart;
+                    productDetails.appendChild(itemImage);
+                    rightDetails.appendChild(itemName);
+                    rightDetails.appendChild(itemQuantity);
+                    productDetails.appendChild(rightDetails);
+                    document.getElementById('card-content').appendChild(productDetails);
+                }
+                document.getElementById('status').innerHTML = "Shipping Status: " + order.getOrder(orderNum).status;
+                document.getElementById('cancel').addEventListener('click', function () {
+                    order.cancelOrder(orderNum);
+                    document.getElementById('status').innerHTML = "Shipping Status: Cancelled";
+                    document.getElementById('cancel').style.display = "none";
+                });
+                document.querySelector(".order-card").style.display = "flex";
+            }
+        });
+    }
+
 }
 
 window.onbeforeunload = function () {
@@ -323,16 +379,17 @@ window.onbeforeunload = function () {
 }
 
 /* Navigation Event Listeners */
-document.getElementById('products-btn').addEventListener('click', function () {
-    openDropdown('products');
-});
-document.getElementById('services-btn').addEventListener('click', function () {
-    openDropdown('services');
-});
-document.getElementById('support-btn').addEventListener('click', function () {
-    openDropdown('support');
-});
-
+if (!window.location.href.includes("payment")) {
+    document.getElementById('products-btn').addEventListener('click', function () {
+        openDropdown('products');
+    });
+    document.getElementById('services-btn').addEventListener('click', function () {
+        openDropdown('services');
+    });
+    document.getElementById('support-btn').addEventListener('click', function () {
+        openDropdown('support');
+    });
+}
 /* Account Event Listeners */
 if (window.location.href.includes("login.html")) {
     document.getElementById('sign-in').addEventListener('click', function () {
@@ -367,11 +424,159 @@ if (window.location.href.includes("account.html")) {
     });
 }
 
+if (window.location.href.split("/").pop() == "payment.html") {
+    var insert = document.querySelector('.right-col');
+    var cartArray = Object.values(JSON.parse(localStorage.getItem('productsInCart')));
+    for (var i = 0; i < cartArray.length; i++) {
+        var product = cartArray[i];
+        var prod = document.createElement('div');
+        prod.className = 'prod-row';
+        prod.id = product.id;
+        var prodInfo = document.createElement('div');
+        prodInfo.className = 'prod-info';
+        var prodImg = document.createElement('img');
+        prodImg.src = "src/img/" + product.imagePath;
+        prodImg.alt = 'Product Image';
+        var prodDesc = document.createElement('div');
+        prodDesc.className = 'prod-desc';
+        var prodName = document.createElement('h2');
+        prodName.innerHTML = product.name;
+        var prodQty = document.createElement('p');
+        prodQty.innerHTML = 'Quantity: ' + product.inCart;
+        prodDesc.appendChild(prodName);
+        prodDesc.appendChild(prodQty);
+        prodInfo.appendChild(prodImg);
+        prodInfo.appendChild(prodDesc);
+        var prodPrice = document.createElement('div');
+        prodPrice.className = 'prod-price';
+        var prodPriceP = document.createElement('p');
+        prodPriceP.innerHTML = '$' + product.price;
+        prodPrice.appendChild(prodPriceP);
+        prod.appendChild(prodInfo);
+        prod.appendChild(prodPrice);
+        insert.appendChild(prod);
+    }
+    var totals = document.createElement('div');
+    totals.className = 'totals';
+    var subTotal = document.createElement('div');
+    subTotal.className = 'row';
+    var subTotalH5 = document.createElement('h5');
+    subTotalH5.innerHTML = 'Sub-Total';
+    var subTotalP = document.createElement('p');
+    subTotalP.innerHTML = '$' + Math.round(JSON.parse(localStorage.getItem('payments')).totalCost);
+    subTotal.appendChild(subTotalH5);
+    subTotal.appendChild(subTotalP);
+    var discount = document.createElement('div');
+    discount.className = 'row';
+    var discountH5 = document.createElement('h5');
+    discountH5.innerHTML = 'Discount';
+    var discountP = document.createElement('p');
+    discountP.innerHTML = '$' + Math.round(JSON.parse(localStorage.getItem('payments')).discount);
+    discount.appendChild(discountH5);
+    discount.appendChild(discountP);
+    var tax = document.createElement('div');
+    tax.className = 'row';
+    var taxH5 = document.createElement('h5');
+    taxH5.innerHTML = 'Tax (13%)';
+    var taxP = document.createElement('p');
+    taxP.innerHTML = '$' + Math.round(JSON.parse(localStorage.getItem('payments')).tax);
+    tax.appendChild(taxH5);
+    tax.appendChild(taxP);
+    var totalP = document.createElement('div');
+    totalP.className = 'row';
+    var totalPH5 = document.createElement('h5');
+    totalPH5.innerHTML = 'Total';
+    var totalPP = document.createElement('p');
+    totalPP.innerHTML = '$' + Math.round(JSON.parse(localStorage.getItem('payments')).finalCost);
+    totalP.appendChild(totalPH5);
+    totalP.appendChild(totalPP);
+    totals.appendChild(subTotal);
+    totals.appendChild(discount);
+    totals.appendChild(tax);
+    totals.appendChild(totalP);
+    insert.appendChild(totals);
+    var btnRow = document.createElement('div');
+    btnRow.className = 'btn-row';
+    var homeBtn = document.createElement('a');
+    homeBtn.href = 'index.html';
+    var homeBtnBtn = document.createElement('button');
+    homeBtnBtn.type = 'button';
+    var homeBtnBtnI = document.createElement('i');
+    homeBtnBtnI.className = 'fa-solid fa-house';
+    var homeBtnBtnText = document.createTextNode(' Home');
+    homeBtnBtn.appendChild(homeBtnBtnI);
+    homeBtnBtn.appendChild(homeBtnBtnText);
+    homeBtn.appendChild(homeBtnBtn);
+    var placeOrderBtn = document.createElement('button');
+    placeOrderBtn.type = 'button';
+    placeOrderBtn.id = 'place-order';
+    var placeOrderBtnI = document.createElement('i');
+    placeOrderBtnI.className = 'fa-solid fa-cart-shopping';
+    var placeOrderBtnText = document.createTextNode(' Place Order');
+    placeOrderBtn.appendChild(placeOrderBtnI);
+    placeOrderBtn.appendChild(placeOrderBtnText);
+    btnRow.appendChild(homeBtn);
+    btnRow.appendChild(placeOrderBtn);
+    insert.appendChild(btnRow);
+    // delete the prod-row with no id assigned to it
+    var noId = document.querySelector('.prod-row');
+    noId.remove();
+
+    document.getElementById('place-order').addEventListener('click', function () {
+        if (payment.validatePayment()) {
+            var cartArray = Object.values(JSON.parse(localStorage.getItem('productsInCart')));
+            var cartArrayProducts = [];
+            for (var i = 0; i < cartArray.length; i++) {
+                cartArrayProducts.push(products.JSONToProduct(cartArray[i]));
+            }
+            order.newOrder(Math.round(Math.random()*10000), cartArrayProducts, "Preparing to Ship", sessionStorage.getItem('name'), JSON.parse(localStorage.getItem('payments')).finalCost);
+            localStorage.setItem('productsInCart', "{}");
+            localStorage.setItem('totalCost', 0);
+            window.location.href = 'process-payment.html';
+        }
+    });
+}
+
+if (window.location.href.includes("process-payment.html")) {
+    document.addEventListener('DOMContentLoaded', function () {
+        payment.processPayment();
+    });
+}
+
+if (window.location.href.includes("payment-success.html")) {
+    if (sessionStorage.getItem('guest') == 'true') {
+        document.getElementById('order-placed').innerHTML = 'Order Placed - #' + JSON.parse(localStorage.getItem('orders')).pop().orderNumber;
+        document.getElementById('history-btn').style.display = 'none';
+    }
+}
+
 if (window.location.href.includes("cart.html")) {
+    cart.displayCart();
+    cart.displayOrder();
     document.getElementById('login-btn').addEventListener('click', function () {
         sessionStorage.setItem('guest', 'false');
         window.location.href = 'login.html';
     });
+    if (JSON.stringify(localStorage.getItem('productsInCart')) == '"{}"') {
+        document.getElementById('checkout-btn').disabled = true;
+        document.getElementById('checkout-btn').style.backgroundColor = 'grey';
+        document.getElementById('checkout-btn').style.cursor = 'not-allowed';
+    } else {
+        document.getElementById('checkout-btn').disabled = false;
+        document.getElementById('checkout-btn').style.backgroundColor = '';
+        document.getElementById('checkout-btn').style.cursor = 'pointer';
+    }
+    var cartArray = Object.values(JSON.parse(localStorage.getItem('productsInCart')));
+    for (var i = 0; i < cartArray.length; i++) { 
+        document.getElementById(products.JSONToProduct(cartArray[i]).imagePath.split('.jpeg')[0]).addEventListener('click', (function (i) {
+            return function () {
+                var product = products.JSONToProduct(cartArray[i]);
+                cart.RemoveFromCart(product);
+                localStorage.setItem('cartNumbers', 0);
+                window.location.href = 'cart.html';
+            }
+        }(i)));
+    }
     document.getElementById('guest-btn').addEventListener('click', function () {
         sessionStorage.setItem('guest', 'true');
         window.location.href = 'payment.html';

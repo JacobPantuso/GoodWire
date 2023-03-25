@@ -1,4 +1,4 @@
-function processPayment() 
+export function processPayment() 
 {
     setTimeout(() => {
         document.getElementById('title').innerHTML = 'Order Placed!';
@@ -11,7 +11,7 @@ function processPayment()
     , 4000);
 }
 
-function validatePayment() {
+export function validatePayment() {
     var name = document.getElementById('name').value;
     var card = document.getElementById('card').value;
     var cvv = document.getElementById('cvv').value;
@@ -29,7 +29,7 @@ function validatePayment() {
             if (name == '') {
                 document.getElementById('name').style.borderColor = 'red';
             } 
-            if (card.length != 16) {
+            if (card.length != 16 && /^\d+$/.test(card)) {
                 document.getElementById('card').style.borderColor = 'red';
             }
             if (cvv.length != 3) {
@@ -39,7 +39,7 @@ function validatePayment() {
                 document.getElementById('date').style.borderColor = 'red';
             }
         } else {
-            window.location.href = 'process-payment.html';
+            return true;
         }
     } else {
         var streetName = document.getElementById('street-name').value;
@@ -51,7 +51,7 @@ function validatePayment() {
             if (name == '') {
                 document.getElementById('name').style.borderColor = 'red';
             } 
-            if (card.length != 16) {
+            if (card.length != 16 || !(/^\d+$/.test(card))) {
                 document.getElementById('card').style.borderColor = 'red';
             }
             if (cvv.length != 3) {
@@ -75,11 +75,13 @@ function validatePayment() {
             if (province == '') {
                 document.getElementById('province').style.borderColor = 'red';
             }
+        } else {
+            return true;
         }
     }
 }
 
-if (sessionStorage.getItem('guest') == 'true') {
-    document.getElementById('loggedIn').style.display = 'none';
+if (sessionStorage.getItem('guest') == 'true' && window.location.href.split('/').pop() == 'payment.html') {
+document.getElementById('loggedIn').style.display = 'none';
     document.getElementById('shipping-info').style.display = 'flex';
 }

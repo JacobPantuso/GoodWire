@@ -170,4 +170,15 @@ button:hover {
     height: 10px;
     width: 25%;
     background-color: rgb(0, 159, 0);
+    animation: progress 1s;
+}
+
+/* animate the progress bar */
+@keyframes progress {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 25%;
+    }
 }

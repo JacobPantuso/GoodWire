@@ -15,7 +15,7 @@ html, body {
 
 .payment-form {
     background-color: white;
-    width: 600px;
+    width: 50%;
     border-radius: 30px;
     margin-bottom: 10px;
 }
@@ -65,16 +65,22 @@ input:focus {
 
 .card-num-name {
     width: 70%;
-    margin: auto;
+    margin: 0 auto 0 auto
 }
 
 form .left-col {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 10px;
     text-align: center;
     padding: 10px;
     width: 50%;
+}
+
+form .left-col p {
+    width: 80%;
+    margin: 0 auto 0 auto;
 }
 
 form .right-col {
@@ -82,7 +88,12 @@ form .right-col {
     flex-direction: column;
     text-align: center;
     padding: 10px;
+    gap: 1rem;
     width: 50%;
+}
+
+form .right-col h5 {
+    margin: 0px;
 }
 
 .date-cvv {
@@ -166,4 +177,42 @@ form .right-col {
 
 #province {
     width: 40%;
+}
+
+/* Cart Display */
+.prod-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin: auto;
+    gap: 10px;
+}
+
+.prod-row img {
+    width: 70px;
+}
+
+.prod-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+}
+
+.prod-info p {
+    margin: 0px;
+    font-size: 12px;
+}
+
+.prod-info h2 {
+    margin: 0px;
+    font-size: 14px;
+}
+
+.prod-price {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

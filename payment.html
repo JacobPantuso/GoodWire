@@ -43,26 +43,7 @@
                 <hr>
                 <div class="right-col">
                     <h3>Order Summary</h3>
-                    <p>No products to display</p>
-                    <div class="totals">
-                        <div class="row">
-                            <h5>Sub-Total</h5>
-                            <p>$NA.NA</p>                     
-                        </div>
-                        <div class="row">
-                            <h5>Tax (13%)</h5>          
-                            <p>$NA.NA</p>                                       
-                        </div>
-                        <div class="row">
-                            <h5>Total</h5>        
-                            <p>$NA.NA</p>                                         
-                        </div>
-                    </div>
-                    <div class="btn-row">
-                        <a href="index.html">
-                            <button type="button"><i class="fa-solid fa-house"></i> Home</button>
-                        </a>
-                        <button type="button" onclick="validatePayment();"><i class="fa-solid fa-cart-shopping"></i> Place Order</button>
+                    <div class="prod-row">
                     </div>
                 </div>
             </form>
@@ -81,7 +62,8 @@
         </div>
     </div>
 </body>
-<script src="src/js/payment.js"></script>
+<script type="module" src="src/js/index.js"></script>
+<script type="module" src="src/js/payment.js"></script>
 <script>
     document.getElementById('date').addEventListener('keyup', function() {
         // If the user has entered 2 digits, add a slash but if the user deletes the slash, remove it

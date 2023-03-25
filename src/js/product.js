@@ -69,6 +69,11 @@ export function initiateProducts() {
   return products;
 }
 
+export function JSONToProduct(JSON) {
+  var product = new Product(JSON.name, JSON.id, JSON.category, JSON.price, JSON.imagePath, JSON.inCart);
+  return product;
+}
+
 export function loadProducts() {
   var productsDiv = document.getElementById("product-grid");
   // loop through products array and create a div for each product and append it to the productsDiv. Every 3 products create a new row

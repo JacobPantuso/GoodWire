@@ -17,7 +17,17 @@ export function cartNumbers(product) {
 
 }
 
+export function initiateCart() {
+    if (localStorage.getItem('productsInCart') == undefined) {
+        localStorage.setItem('productsInCart', JSON.stringify({}));
+    } else if (JSON.stringify(localStorage.getItem('productsInCart')) ==  '"{}"') {
+        localStorage.setItem('cartNumbers', 0);
+        localStorage.setItem('payments', "{}");
+    }
+}
+
 export function RemoveFromCart(product) {
+    console.log(product);
     let productNumbers = localStorage.getItem('cartNumbers'); 
     productNumbers = parseInt(productNumbers); 
 
@@ -66,6 +76,7 @@ function removeItems(product) {
     
     let cartItems = localStorage.getItem('productsInCart'); 
     cartItems = JSON.parse(cartItems); 
+    var newCart = {};
     
     if (cartItems != null) { // there is already something in the localStorage
  
@@ -75,46 +86,53 @@ function removeItems(product) {
         }
 
         if (cartItems[product.name].inCart == 0) {
-            delete cartItems[product.name]; 
-            
+            for (var key in cartItems) {
+                console.log("key: " + key + " product.name: " + product.name);
+                console.log(key != product.name);
+                if (key != product.name) {
+                    newCart[key] = cartItems[key];
+                }
+            }
         } 
-    
+        console.log(newCart);
+        cartItems = newCart;
         localStorage.setItem("productsInCart", JSON.stringify(cartItems));
-    
+        totalCost(product, "true");
     }
 
 }
 
-function displayCart() {
-
+export function displayCart() {
     let cartItems = localStorage.getItem("productsInCart");
     cartItems = JSON.parse(cartItems);
-    let productContainer = document.querySelector(".products");
-    if ( cartItems && productContainer ) {
+    let productContainer = document.querySelector(".cart-products");
+    if (JSON.stringify(localStorage.getItem('productsInCart')) !=  '"{}"') {
         productContainer.innerHTML = '';
         Object.values(cartItems).map(item => { 
             productContainer.innerHTML += `
-            <div class="product">
-                <ion-icon name="close-circle"></ion-icon>
-                <img src="src/img/${item.imagePath}">
-                <span>${item.name}</span>
+            <div class="prod-row">
+            <div class="left">
+                <div class="prod-img">
+                    <img src="src/img/${item.imagePath}" alt="">
+                </div>
+                <div class="prod-info">
+                    <h2 id="prodname">${item.name}</h2>
+                    <p id="price">Price: $${item.price}</p>
+                    <p id="amt">Quantity: ${item.inCart}</p>
+                </div>
             </div>
-            <div class="price">${item.price}</div>
-            <div class="quantity">
-                <ion-icon class="decrease" name="caret-back"></ion-icon>
-                <span>${item.inCart}</span>
-                <ion-icon class="increase" name="caret-forward"></ion-icon>
+            <div class="right">
+                <div class="prod-btns">
+                    <button id="${item.imagePath.split('.jpeg')[0]}" class="remove"><i class="fa-solid fa-times-circle"></i></button>
+                </div>
+            </div>
             </div>
             `
-
-            
         });
     }
-
 }
 
-function displayOrder() {
-
+export function displayOrder() {
     let cartCost = localStorage.getItem("totalCost");
     cartCost = JSON.parse(cartCost);
 
@@ -139,9 +157,9 @@ function displayOrder() {
 
 
        if (discountVariable == 0.30) {
-          let calculateDiscount = (cartCost *  discountVariable); 
+          var calculateDiscount = (cartCost *  discountVariable); 
           let priceDiscount = (cartCost - calculateDiscount); 
-          let totalTax = priceDiscount * taxDecimal; 
+          var totalTax = priceDiscount * taxDecimal; 
           let totalCost = priceDiscount + totalTax;
           finalCost.innerHTML = "$" + Math.round((totalCost + Number.EPSILON) * 100) / 100;; 
           
@@ -151,13 +169,18 @@ function displayOrder() {
          let totalCost = cartCost + totalTax; 
          finalCost.innerHTML = "$" + Math.round((totalCost + Number.EPSILON) * 100) / 100;;         
        }
-       
-
+       var payments = {
+        "totalCost": cartCost,
+        "finalCost": parseInt(finalCost.innerHTML.split('$')[1]),
+        "discount": calculateDiscount,
+        "tax": totalTax
+        };
     }
 
+    localStorage.setItem("payments", JSON.stringify(payments));
 }
 
-function onLoadCartNumbers() {       // each time we refresh the page, we get the product number in the cart 
+export function onLoadCartNumbers() {       // each time we refresh the page, we get the product number in the cart 
     let productNumbers = localStorage.getItem('cartNumbers');
 
     if (productNumbers) {
@@ -165,21 +188,20 @@ function onLoadCartNumbers() {       // each time we refresh the page, we get th
     }
 }
 
- export function totalCost(product) {  // calculating the total cost 
+ export function totalCost(product, sub) {  // calculating the total cost 
 
     let cartCost = localStorage.getItem('totalCost'); 
-    
-    if (cartCost != null) {
+
+    if (sub == "true") {
         cartCost = parseInt(cartCost);
-       localStorage.setItem("totalCost", cartCost + product.price); 
+        localStorage.setItem("totalCost", cartCost - product.price);
+    } else {
+        if (cartCost != null) {
+            cartCost = parseInt(cartCost);
+           localStorage.setItem("totalCost", cartCost + product.price); 
+        }
+        else {
+            localStorage.setItem("totalCost", product.price); 
+        }
     }
-    else {
-        localStorage.setItem("totalCost", product.price); 
-    }
-
  } 
-
-
-onLoadCartNumbers();
-displayCart();
-displayOrder(); 
