@@ -10,6 +10,14 @@ export class Product {
         products.push(this);
       }
 
+      getInCart() {
+        return this.inCart;
+      }
+
+      decreaseQuantity() {
+        this.inCart -= 1;
+      }
+
       getName() {
         return this.name;
       }
