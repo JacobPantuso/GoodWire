@@ -12,7 +12,6 @@ export function cartNumbers(product) {
         localStorage.setItem('cartNumbers', 1); 
         document.querySelector('.cart span').textContent = 1; 
     }
-
     setItems(product)
 
 }
@@ -27,9 +26,9 @@ export function initiateCart() {
 }
 
 export function RemoveFromCart(product) {
-    console.log(product);
     let productNumbers = localStorage.getItem('cartNumbers'); 
     productNumbers = parseInt(productNumbers); 
+    product.decreaseQuantity();
 
     if (productNumbers) {
         localStorage.setItem('cartNumbers', productNumbers - 1); 
@@ -66,9 +65,20 @@ function setItems(product) {
         [product.name]: product
      }
    }
-
    localStorage.setItem("productsInCart", JSON.stringify(cartItems)); 
 
+}
+
+export function inCart(product) {
+    let cartItems = localStorage.getItem('productsInCart');
+    cartItems = JSON.parse(cartItems);
+    if (cartItems != null) {
+        if (cartItems[product.name] != undefined) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
 function removeItems(product) {
@@ -85,16 +95,11 @@ function removeItems(product) {
          cartItems[product.name].inCart -= 1; 
         }
 
-        if (cartItems[product.name].inCart == 0) {
-            for (var key in cartItems) {
-                console.log("key: " + key + " product.name: " + product.name);
-                console.log(key != product.name);
-                if (key != product.name) {
-                    newCart[key] = cartItems[key];
-                }
+        for (var key in cartItems) {
+            if (key != product.name) {
+                newCart[key] = cartItems[key];
             }
-        } 
-        console.log(newCart);
+        }
         cartItems = newCart;
         localStorage.setItem("productsInCart", JSON.stringify(cartItems));
         totalCost(product, "true");

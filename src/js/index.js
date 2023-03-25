@@ -87,26 +87,51 @@ window.onload = function () {
     if (window.location.href.includes('products.html')) {
         products.loadProducts();
         let nums = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+        // if the product is in the cart, change the button to "Remove from Cart", 
         for (var i = 0; i < prodArray.length; i++) {
-            document.getElementById('prod' + (i + 1)).addEventListener('click', (function (i) {
-                return function () {
-                    var prodButton = document.getElementById('prod' + (i + 1));
-                    // When you click Add to cart, the else statement will run
-                    if (nums[i] % 2 === 0) {
-                        prodButton.innerHTML = "Add to Cart"
-                        prodButton.style.backgroundColor = "";
+            if (cart.inCart(prodArray[i])) {
+                let prodButton = document.getElementById('prod' + (i + 1));
+                prodButton.innerHTML = "Remove from Cart"
+                prodButton.style.backgroundColor = "rgb(99 157 41)";
+                document.getElementById('prod' + (i + 1)).addEventListener('click', (function (i) {
+                    return function () {
+                        let prodButton = document.getElementById('prod' + (i + 1));
                         nums[i]--;
                         cart.RemoveFromCart(prodArray[i]);
-                    }
-                    else {
-                        prodButton.innerHTML = "Remove from Cart"
-                        prodButton.style.backgroundColor = "rgb(99 157 41)";
-                        nums[i]++;
-                        cart.cartNumbers(prodArray[i]);
-                        cart.totalCost(prodArray[i]);
-                      } 
-                };
-            }(i)));
+                        prodButton.innerHTML = "Add to Cart"
+                        prodButton.style.backgroundColor = "";
+                        prodButton.addEventListener('click', (function (i) {
+                            return function () {
+                                let prodButton = document.getElementById('prod' + (i + 1));
+                                nums[i]++;
+                                cart.cartNumbers(prodArray[i]);
+                                cart.totalCost(prodArray[i]);
+                                prodButton.innerHTML = "Remove from Cart"
+                                prodButton.style.backgroundColor = "rgb(99 157 41)";
+                            }
+                        }(i)));
+                    };
+                }(i)));
+            } else {
+                document.getElementById('prod' + (i + 1)).addEventListener('click', (function (i) {
+                    return function () {
+                        var prodButton = document.getElementById('prod' + (i + 1));
+                        if (nums[i] % 2 === 0) {
+                            prodButton.innerHTML = "Add to Cart"
+                            prodButton.style.backgroundColor = "";
+                            nums[i]--;
+                            cart.RemoveFromCart(prodArray[i]);
+                        }
+                        else {
+                            prodButton.innerHTML = "Remove from Cart"
+                            prodButton.style.backgroundColor = "rgb(99 157 41)";
+                            nums[i]++;
+                            cart.cartNumbers(prodArray[i]);
+                            cart.totalCost(prodArray[i]);
+                        } 
+                    };
+                }(i)));
+            }
         }
     }
 
