@@ -1,6 +1,4 @@
 export function cartNumbers(product) {
-
-    console.log(product);
     
     let productNumbers = localStorage.getItem('cartNumbers'); 
     productNumbers = parseInt(productNumbers); 
@@ -97,11 +95,19 @@ function displayCart() {
         Object.values(cartItems).map(item => { 
             productContainer.innerHTML += `
             <div class="product">
-                <ion-icon name="close-circle-outline"></ion-icon>
+                <ion-icon name="close-circle"></ion-icon>
                 <img src="src/img/${item.imagePath}">
                 <span>${item.name}</span>
             </div>
+            <div class="price">${item.price}</div>
+            <div class="quantity">
+                <ion-icon class="decrease" name="caret-back"></ion-icon>
+                <span>${item.inCart}</span>
+                <ion-icon class="increase" name="caret-forward"></ion-icon>
+            </div>
             `
+
+            
         });
     }
 
@@ -115,7 +121,7 @@ function displayOrder() {
     let cartRow = document.getElementById("subtotal"); 
     var discountVariable = 0; 
     if ( cartCost && cartRow ) {
-       cartRow.innerHTML = "$" + cartCost;
+       cartRow.innerHTML = "$" + cartCost.toFixed(2);
        var discounts = document.getElementById("discount"); 
        if (cartCost > 500) {
           discounts.innerHTML = "30%"; 
@@ -137,13 +143,13 @@ function displayOrder() {
           let priceDiscount = (cartCost - calculateDiscount); 
           let totalTax = priceDiscount * taxDecimal; 
           let totalCost = priceDiscount + totalTax;
-          finalCost.innerHTML = "$" + totalCost; 
+          finalCost.innerHTML = "$" + Math.round((totalCost + Number.EPSILON) * 100) / 100;; 
           
        }
        else {
          let totalTax = cartCost * taxDecimal; 
          let totalCost = cartCost + totalTax; 
-         finalCost.innerHTML = "$" + totalCost;         
+         finalCost.innerHTML = "$" + Math.round((totalCost + Number.EPSILON) * 100) / 100;;         
        }
        
 
