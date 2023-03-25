@@ -14,10 +14,6 @@ export class Product {
         return this.inCart;
       }
 
-      decreaseQuantity() {
-        this.inCart -= 1;
-      }
-
       getName() {
         return this.name;
       }

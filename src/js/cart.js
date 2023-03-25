@@ -28,7 +28,6 @@ export function initiateCart() {
 export function RemoveFromCart(product) {
     let productNumbers = localStorage.getItem('cartNumbers'); 
     productNumbers = parseInt(productNumbers); 
-    product.decreaseQuantity();
 
     if (productNumbers) {
         localStorage.setItem('cartNumbers', productNumbers - 1); 
