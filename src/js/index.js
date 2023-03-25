@@ -56,7 +56,6 @@ window.onclick = function (e) {
 
 
 window.onload = function () {
-    assert();
     account.receiveStorage();
     order.receiveStorage();
     cart.initiateCart();
