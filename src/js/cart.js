@@ -82,18 +82,12 @@ export function inCart(product) {
 
 function removeItems(product) {
     
-    
+
     let cartItems = localStorage.getItem('productsInCart'); 
     cartItems = JSON.parse(cartItems); 
     var newCart = {};
     
     if (cartItems != null) { // there is already something in the localStorage
- 
-       if (cartItems[product.name].inCart > 0) {
-        
-         cartItems[product.name].inCart -= 1; 
-        }
-
         for (var key in cartItems) {
             if (key != product.name) {
                 newCart[key] = cartItems[key];
@@ -122,7 +116,7 @@ export function displayCart() {
                 <div class="prod-info">
                     <h2 id="prodname">${item.name}</h2>
                     <p id="price">Price: $${item.price}</p>
-                    <p id="amt">Quantity: ${item.inCart}</p>
+                    <p id="amt">Quantity: 1</p>
                 </div>
             </div>
             <div class="right">
