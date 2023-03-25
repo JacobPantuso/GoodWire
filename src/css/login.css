@@ -165,7 +165,7 @@ svg {
     color: rgb(29, 29, 75);
 }
 
-#track-order {
+#track-order, #cancel {
     padding: 10px;
     border: none;
     border-radius: 5px;
@@ -177,7 +177,7 @@ svg {
     margin: auto;
 }
 
-button:hover {
+#track-order:hover, #cancel:hover {
     background-color: rgb(65, 65, 225);
     border-radius: 10px;
 }
