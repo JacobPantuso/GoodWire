@@ -17,6 +17,7 @@ h1 {
     flex-direction: column;
     width: 75%;
     height: 100%;
+    
 }
 
 .cart-products {
@@ -31,7 +32,29 @@ h1 {
     height: 100%;
 }
 
+.cart-products ion-icon {
+    font-size: 25px; 
+    color: blue; 
+    margin-left: 10px; 
+    margin-right: 10px; 
+    cursor: pointer;
+}
 
+.products {
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid lightgray;
+}
+.product ion-icon {
+    cursor: pointer;
+    
+}
+.products img {
+    width: 100px;
+}
 
 .cart-summary {
     display: flex;

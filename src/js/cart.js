@@ -20,7 +20,6 @@ export function cartNumbers(product) {
 }
 
 export function RemoveFromCart(product) {
-
     let productNumbers = localStorage.getItem('cartNumbers'); 
     productNumbers = parseInt(productNumbers); 
 
@@ -65,32 +64,34 @@ function setItems(product) {
 }
 
 function removeItems(product) {
-
+    
+    
     let cartItems = localStorage.getItem('productsInCart'); 
     cartItems = JSON.parse(cartItems); 
     
     if (cartItems != null) { // there is already something in the localStorage
  
-       if (cartItems[product.name] == undefined) {
-         cartItems = {
-             ...cartItems,
-             [product.name]: product
-         }
-       }
-       cartItems[product.name].inCart -= 1; 
-    } 
+       if (cartItems[product.name].inCart > 0) {
+        
+         cartItems[product.name].inCart -= 1; 
+        }
 
-    localStorage.setItem("productsInCart", JSON.stringify(cartItems)); 
- 
- }
+        if (cartItems[product.name].inCart == 0) {
+            delete cartItems[product.name]; 
+            
+        } 
+    
+        localStorage.setItem("productsInCart", JSON.stringify(cartItems));
+    
+    }
+
+}
 
 function displayCart() {
 
     let cartItems = localStorage.getItem("productsInCart");
     cartItems = JSON.parse(cartItems);
-    let productContainer = document.querySelector(".cart-products");
-    
-    
+    let productContainer = document.querySelector(".products");
     if ( cartItems && productContainer ) {
         productContainer.innerHTML = '';
         Object.values(cartItems).map(item => { 
@@ -106,8 +107,51 @@ function displayCart() {
 
 }
 
+function displayOrder() {
 
-function onLoadCartNumbers() { // each time we refresh the page, we get the product number in the cart 
+    let cartCost = localStorage.getItem("totalCost");
+    cartCost = JSON.parse(cartCost);
+
+    let cartRow = document.getElementById("subtotal"); 
+    var discountVariable = 0; 
+    if ( cartCost && cartRow ) {
+       cartRow.innerHTML = "$" + cartCost;
+       var discounts = document.getElementById("discount"); 
+       if (cartCost > 500) {
+          discounts.innerHTML = "30%"; 
+          discountVariable = 0.30; 
+       }
+       else {
+        discounts.innerHTML = "$0.00";
+       }
+
+       let tax = document.getElementById("taxes"); 
+       tax.innerHTML = "13%"
+       let taxDecimal = 0.13;
+
+       var finalCost = document.getElementById('total');
+
+
+       if (discountVariable == 0.30) {
+          let calculateDiscount = (cartCost *  discountVariable); 
+          let priceDiscount = (cartCost - calculateDiscount); 
+          let totalTax = priceDiscount * taxDecimal; 
+          let totalCost = priceDiscount + totalTax;
+          finalCost.innerHTML = "$" + totalCost; 
+          
+       }
+       else {
+         let totalTax = cartCost * taxDecimal; 
+         let totalCost = cartCost + totalTax; 
+         finalCost.innerHTML = "$" + totalCost;         
+       }
+       
+
+    }
+
+}
+
+function onLoadCartNumbers() {       // each time we refresh the page, we get the product number in the cart 
     let productNumbers = localStorage.getItem('cartNumbers');
 
     if (productNumbers) {
@@ -115,7 +159,7 @@ function onLoadCartNumbers() { // each time we refresh the page, we get the prod
     }
 }
 
- export function totalCost(product) {
+ export function totalCost(product) {  // calculating the total cost 
 
     let cartCost = localStorage.getItem('totalCost'); 
     
@@ -132,3 +176,4 @@ function onLoadCartNumbers() { // each time we refresh the page, we get the prod
 
 onLoadCartNumbers();
 displayCart();
+displayOrder(); 
