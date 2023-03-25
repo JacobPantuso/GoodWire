@@ -1,7 +1,6 @@
 import * as account from './account.js';
 import * as products from './product.js';
 import * as cart from './cart.js';
-import * as setItems from './cart.js';
 
 
 function openDropdown(element) {
@@ -98,6 +97,7 @@ window.onload = function() {
                         prodButton.style.backgroundColor = "rgb(99 157 41)";
                         nums[i]++; 
                         cart.cartNumbers(prodArray[i]);
+                        cart.totalCost(prodArray[i]);
                       }     
                 };
             
