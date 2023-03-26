@@ -54,7 +54,6 @@ window.onclick = function (e) {
     }
 }
 
-
 window.onload = function () {
     account.receiveStorage();
     order.receiveStorage();

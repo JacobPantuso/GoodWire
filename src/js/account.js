@@ -191,7 +191,6 @@ export function validateRegister() {
 export function login() {
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
-    console.log(email); 
     if (accounts.find(account => account.email == email && account.password == password)) {
         sessionStorage.setItem('name', retrieveObject(email).getName());
         sessionStorage.setItem('guest', 'false');
