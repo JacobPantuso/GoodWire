@@ -59,7 +59,7 @@ window.onload = function () {
     order.receiveStorage();
     cart.initiateCart();
     if (!window.location.href.includes('payment')) {
-        cart.onLoadCartNumbers();
+        cart.onLoadCartNums();
     }
     var prodArray = products.initiateProducts();
     if (window.location.href.includes('contact.html') || window.location.href.includes('warranty.html') || window.location.href.includes('tech-support.html')) {

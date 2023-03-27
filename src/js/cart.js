@@ -2,7 +2,7 @@ export function cartNumbers(product) {
     
     let productNums = JSON.parse(localStorage.getItem('cartNumbers')); 
 
-    if (productNums === true) { // if there was already some products in the localStorage
+    if (productNums) { // if there was already some products in the localStorage
         localStorage.setItem('cartNumbers', productNums + 1); 
         document.querySelector('.cart span').textContent = productNums + 1; 
     }
@@ -11,7 +11,7 @@ export function cartNumbers(product) {
         localStorage.setItem('cartNumbers', 1); 
         document.querySelector('.cart span').textContent = 1; 
     }
-    setItems(product)
+    set(product)
 
 }
 
@@ -25,9 +25,9 @@ export function initiateCart() {
 }
 
 export function RemoveFromCart(product) {
-    let productNums = JSON.parse(localStorage.getItem('cartNumbers'));  
+    let productNums = JSON.parse(localStorage.getItem('cartNumbers')); 
 
-    if (productNums === true) {
+    if (productNums) {
         localStorage.setItem('cartNumbers', productNums - 1); 
         document.querySelector('.cart span').textContent = productNums - 1; 
     }
@@ -37,11 +37,12 @@ export function RemoveFromCart(product) {
     }
     removeItems(product);
 
+
 }
 
-function setItems(product) {
+function set(product) {
 
-   let cartItems = JSON.parse(localStorage.getItem('productsInCart'));
+   let cartItems = JSON.parse(localStorage.getItem('productsInCart')); 
    
    if (cartItems != null) { // there is already something in the localStorage
 
@@ -65,8 +66,8 @@ function setItems(product) {
 }
 
 export function inCart(product) {
-    let cartItems = localStorage.getItem('productsInCart');
-    cartItems = JSON.parse(cartItems);
+    let cartItems = JSON.parse(localStorage.getItem('productsInCart'));
+    
     if (cartItems != null) {
         if (cartItems[product.name] != undefined) {
             return true;
@@ -78,8 +79,7 @@ export function inCart(product) {
 
 function removeItems(product) {
     
-
-    let cartItems = JSON.parse(localStorage.getItem('productsInCart'));  
+    let cartItems = JSON.parse(localStorage.getItem('productsInCart')); 
     var newCart = {};
     
     if (cartItems != null) { // there is already something in the localStorage
@@ -97,7 +97,6 @@ function removeItems(product) {
 
 export function displayCart() {
     let cartItems = JSON.parse(localStorage.getItem("productsInCart"));
-
     let productContainer = document.querySelector(".cart-products");
     if (JSON.stringify(localStorage.getItem('productsInCart')) !=  '"{}"') {
         productContainer.innerHTML = '';
@@ -122,6 +121,7 @@ export function displayCart() {
             </div>
             `
         });
+        deleteB();
     }
 }
 
@@ -172,28 +172,47 @@ export function displayOrder() {
     localStorage.setItem("payments", JSON.stringify(payments));
 }
 
-export function onLoadCartNumbers() {       // each time we refresh the page, we get the product number in the cart 
-    let productNumbers = localStorage.getItem('cartNumbers');
+export function onLoadCartNums() {       // each time we refresh the page, we get the product number in the cart 
+    let productNums = localStorage.getItem('cartNumbers');
 
-    if (productNumbers === true) {
-        document.querySelector('.cart span').textContent = productNumbers; 
+    if (productNums) {
+        document.querySelector('.cart span').textContent = productNums; 
     }
 }
 
  export function totalCost(product, sub) {  // calculating the total cost 
 
-    let cartCost = localStorage.getItem('totalCost'); 
+    let cartC = localStorage.getItem('totalCost'); 
 
     if (sub == "true") {
-        cartCost = parseInt(cartCost);
-        localStorage.setItem("totalCost", cartCost - product.price);
+        cartC = parseInt(cartC);
+        localStorage.setItem("totalCost", cartC - product.price);
     } else {
-        if (cartCost != null) {
-            cartCost = parseInt(cartCost);
-           localStorage.setItem("totalCost", cartCost + product.price); 
+        if (cartC != null) {
+            cartC = parseInt(cartC);
+           localStorage.setItem("totalCost", cartC + product.price); 
         }
         else {
             localStorage.setItem("totalCost", product.price); 
         }
     }
  } 
+
+ function deleteB() {
+    let productNums = JSON.parse(localStorage.getItem('cartNumbers'));
+    let deleteBut = document.querySelectorAll('prod-btns fa-solid fa-times-circle');
+    let cartItems = JSON.parse(localStorage.getItem('productsInCart'));
+
+    for(let i=0; i < deleteBut.length; i++) {
+        deleteBut[i].addEventListener('click', () => {
+            let nameOfProduct = deleteBut[i]; 
+           
+            localStorage.setItem('cartNumbers', productNums - cartItems[productName].inCart);
+            delete cartItems[nameOfProduct];
+            localStorage.setItem('productsInCart', JSON.stringify(cartItems));
+
+            displayCart();
+            onLoadCartNums();
+        })
+    }
+}
