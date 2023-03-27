@@ -594,8 +594,7 @@ if (window.location.href.includes("cart.html")) {
             return function () {
                 var product = products.JSONToProduct(cartArray[i]);
                 cart.RemoveFromCart(product);
-                localStorage.setItem('cartNumbers', 0);
-                window.location.href = 'cart.html';
+                window.location.href = "cart.html"
             }
         }(i)));
     }
