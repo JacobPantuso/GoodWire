@@ -1,11 +1,10 @@
 export function cartNumbers(product) {
     
-    let productNumbers = localStorage.getItem('cartNumbers'); 
-    productNumbers = parseInt(productNumbers); 
+    let productNums = JSON.parse(localStorage.getItem('cartNumbers')); 
 
-    if (productNumbers) { // if there was already some products in the localStorage
-        localStorage.setItem('cartNumbers', productNumbers + 1); 
-        document.querySelector('.cart span').textContent = productNumbers + 1; 
+    if (productNums === true) { // if there was already some products in the localStorage
+        localStorage.setItem('cartNumbers', productNums + 1); 
+        document.querySelector('.cart span').textContent = productNums + 1; 
     }
 
     else {
@@ -26,12 +25,11 @@ export function initiateCart() {
 }
 
 export function RemoveFromCart(product) {
-    let productNumbers = localStorage.getItem('cartNumbers'); 
-    productNumbers = parseInt(productNumbers); 
+    let productNums = JSON.parse(localStorage.getItem('cartNumbers'));  
 
-    if (productNumbers) {
-        localStorage.setItem('cartNumbers', productNumbers - 1); 
-        document.querySelector('.cart span').textContent = productNumbers - 1; 
+    if (productNums === true) {
+        localStorage.setItem('cartNumbers', productNums - 1); 
+        document.querySelector('.cart span').textContent = productNums - 1; 
     }
     else {
         localStorage.setItem('cartNumbers', 1); 
@@ -39,13 +37,11 @@ export function RemoveFromCart(product) {
     }
     removeItems(product);
 
-
 }
 
 function setItems(product) {
 
-   let cartItems = localStorage.getItem('productsInCart'); 
-   cartItems = JSON.parse(cartItems); 
+   let cartItems = JSON.parse(localStorage.getItem('productsInCart'));
    
    if (cartItems != null) { // there is already something in the localStorage
 
@@ -83,8 +79,7 @@ export function inCart(product) {
 function removeItems(product) {
     
 
-    let cartItems = localStorage.getItem('productsInCart'); 
-    cartItems = JSON.parse(cartItems); 
+    let cartItems = JSON.parse(localStorage.getItem('productsInCart'));  
     var newCart = {};
     
     if (cartItems != null) { // there is already something in the localStorage
@@ -101,8 +96,8 @@ function removeItems(product) {
 }
 
 export function displayCart() {
-    let cartItems = localStorage.getItem("productsInCart");
-    cartItems = JSON.parse(cartItems);
+    let cartItems = JSON.parse(localStorage.getItem("productsInCart"));
+
     let productContainer = document.querySelector(".cart-products");
     if (JSON.stringify(localStorage.getItem('productsInCart')) !=  '"{}"') {
         productContainer.innerHTML = '';
@@ -131,8 +126,7 @@ export function displayCart() {
 }
 
 export function displayOrder() {
-    let cartCost = localStorage.getItem("totalCost");
-    cartCost = JSON.parse(cartCost);
+    let cartCost = JSON.parse(localStorage.getItem("totalCost"));
 
     let cartRow = document.getElementById("subtotal"); 
     var discountVariable = 0; 
@@ -181,7 +175,7 @@ export function displayOrder() {
 export function onLoadCartNumbers() {       // each time we refresh the page, we get the product number in the cart 
     let productNumbers = localStorage.getItem('cartNumbers');
 
-    if (productNumbers) {
+    if (productNumbers === true) {
         document.querySelector('.cart span').textContent = productNumbers; 
     }
 }
