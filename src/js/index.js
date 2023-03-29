@@ -3,6 +3,7 @@ import * as products from './product.js';
 import * as cart from './cart.js';
 import * as order from './order.js';
 import * as payment from './payment.js';
+import {runTests} from './test.js';
 
 function openDropdown(element) {
     document.getElementById(element).classList.toggle("show");
@@ -58,6 +59,7 @@ window.onload = function () {
     account.receiveStorage();
     order.receiveStorage();
     cart.initiateCart();
+    runTests();
     if (!window.location.href.includes('payment')) {
         cart.onLoadCartNums();
     }
@@ -551,7 +553,7 @@ if (window.location.href.split("/").pop() == "payment.html") {
             for (var i = 0; i < cartArray.length; i++) {
                 cartArrayProducts.push(products.JSONToProduct(cartArray[i]));
             }
-            order.newOrder(Math.round(Math.random()*10000), cartArrayProducts, "Preparing to Ship", sessionStorage.getItem('name'), JSON.parse(localStorage.getItem('payments')).finalCost);
+            order.newOrder(Math.round(Math.random()*10000), cartArrayProducts, "Preparing to Ship", sessionStorage.getItem('name'), JSON.parse(localStorage.getItem('payments')).finalCost, false);
             localStorage.setItem('productsInCart', "{}");
             localStorage.setItem('totalCost', 0);
             window.location.href = 'process-payment.html';

@@ -51,6 +51,14 @@ export class Product {
       }
 }
 
+export function removeProduct(product) {
+  for (var i = 0; i < products.length; i++) {
+    if (products[i].getId() == product.getId()) {
+      products = products
+    }
+  }
+}
+
 export function initiateProducts() {
   new Product("Apple iPhone 14",1,"phone", 1299, "iphone14.jpeg", 0);
   new Product("Samsung Galaxy S23",2,"phone", 999, "galaxy.jpeg", 0);
@@ -79,6 +87,9 @@ export function JSONToProduct(JSON) {
 }
 
 export function loadProducts() {
+  if (!window.location.href.includes("products.html")) { 
+    return 'Not on products page'
+  }
   var productsDiv = document.getElementById("product-grid");
   // loop through products array and create a div for each product and append it to the productsDiv. Every 3 products create a new row
   var rowDiv = document.createElement("div");
@@ -126,48 +137,5 @@ export function loadProducts() {
     productButton.id = "prod" + (i+1);
     productButton.innerHTML = "Add to Cart";
   }
+  return true;
 }
-
-/*
-const prod0button = document.querySelector('prod0')
-const prod1button = document.querySelector('prod1')
-const prod2button = document.querySelector('prod2')
-const prod3button = document.querySelector('prod3')
-const prod4button = document.querySelector('prod4')
-const prod5button = document.querySelector('prod5')
-const prod6button = document.querySelector('prod6')
-const prod7button = document.querySelector('prod7')
-const prod8button = document.querySelector('prod8')
-const prod9button = document.querySelector('prod9')
-const prod10button = document.querySelector('prod10')
-const prod11button = document.querySelector('prod11')
-const prod12button = document.querySelector('prod12')
-const prod13button = document.querySelector('prod13')
-const prod14button = document.querySelector('prod14')
-const prod15button = document.querySelector('prod15')
-const prod16button = document.querySelector('prod16')
-const prod17button = document.querySelector('prod17')
-
-prod0button.setAttribute("data-prod0", JSON.stringify(prod0));
-prod1button.setAttribute("data-prod1", JSON.stringify(prod1));
-prod2button.setAttribute("data-prod2", JSON.stringify(prod2));
-prod3button.setAttribute("data-prod3", JSON.stringify(prod3));
-prod4button.setAttribute("data-prod4", JSON.stringify(prod4));
-prod5button.setAttribute("data-prod5", JSON.stringify(prod5));
-prod6button.setAttribute("data-prod6", JSON.stringify(prod6));
-prod7button.setAttribute("data-prod7", JSON.stringify(prod7));
-prod8button.setAttribute("data-prod8", JSON.stringify(prod8));
-prod9button.setAttribute("data-prod9", JSON.stringify(prod9));
-prod10button.setAttribute("data-prod10", JSON.stringify(prod10));
-prod11button.setAttribute("data-prod11", JSON.stringify(prod11));
-prod12button.setAttribute("data-prod12", JSON.stringify(prod12));
-prod13button.setAttribute("data-prod13", JSON.stringify(prod13));
-prod14button.setAttribute("data-prod14", JSON.stringify(prod14));
-prod15button.setAttribute("data-prod15", JSON.stringify(prod15));
-prod16button.setAttribute("data-prod16", JSON.stringify(prod16));
-prod17button.setAttribute("data-prod17", JSON.stringify(prod17));
-*/
-
-// to retrieve the object from the div later, you can use:
-// let retrievedObject = JSON.parse(myDiv.getAttribute("data-prodNUMBER"));
-// console.log(retrievedObject);

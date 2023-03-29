@@ -35,23 +35,30 @@ export class Order {
 
 }
 
-export function newOrder(orderNumber, cart, status, email, price) {
-    if (sessionStorage.getItem('guest') == 'true') {
-        var order = new Order(orderNumber, null, cart, status, email, price);
-        orders.push(order);
-        localStorage.setItem('orders', JSON.stringify(orders));
-        return order;
+export function newOrder(orderNumber, cart, status, email, price, test) {
+    if ((orderNumber == '' || orderNumber == null || orderNumber == undefined || isNaN(parseInt(orderNumber))) || (cart == '' || cart == null || cart == undefined || cart == []) || (status == '' || status == null || status == undefined) || (email == '' || email == null || email == undefined) || (price == '' || price == null || price == undefined || isNaN(parseInt(price)))) {
+        return null;
     } else {
-        var res = account.getAccountByName(sessionStorage.getItem('name'));
-        var order = new Order(orderNumber, null, cart, status, email, price);
-        res.addOrder(order);
-        orders.push(order);
-        return order;
+        if (sessionStorage.getItem('guest') == 'true' || test == true) {
+            var order = new Order(orderNumber, null, cart, status, email, price);
+            orders.push(order);
+            localStorage.setItem('orders', JSON.stringify(orders));
+            return order;
+        } else {
+            var res = account.getAccountByName(sessionStorage.getItem('name'));
+            var order = new Order(orderNumber, null, cart, status, email, price);
+            res.addOrder(order);
+            orders.push(order);
+            return order;
+        }
     }
 }
 
-export function cancelOrder(orderNumber) {
-    if (sessionStorage.getItem('guest') == 'true') {
+export function cancelOrder(orderNumber, test) {
+    if (getOrder(orderNumber) == null) {
+        return false;
+    }
+    if (sessionStorage.getItem('guest') == 'true' && test == true) {
         var newOrders = [];
         for (var i = 0; i < orders.length; i++) {
             if (orders[i].orderNumber != orderNumber) {
@@ -60,11 +67,10 @@ export function cancelOrder(orderNumber) {
         }
         orders = newOrders;
         localStorage.setItem('orders', JSON.stringify(orders));
-    } else if (sessionStorage.getItem('guest') == 'false') {
+    } else if (sessionStorage.getItem('guest') == 'false' && test == null) {
         var res = account.getAccountByName(sessionStorage.getItem('name'));
         var newOrders = [];
         for (var i = 0; i < res.orders.length; i++) {
-            console.log(res.orders[i].orderNumber);
             if (res.orders[i].orderNumber != orderNumber) {
                 newOrders.push(res.orders[i]);
             } else {
@@ -74,6 +80,7 @@ export function cancelOrder(orderNumber) {
         orders = newOrders;
         res.removeOrder(order);
     }
+    return true;
 }
 
 export function getOrder(orderNumber) {

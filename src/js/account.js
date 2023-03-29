@@ -88,6 +88,7 @@ class Account {
         this.postal_code = postal_code;
         this.country = country;
         updateStorage();
+        return this.street_number + ' ' + this.street_name + ', ' + this.city + ', ' + this.province + ', ' + this.postal_code + ', ' + this.country;
     }
 
     addOrder(order) {
@@ -144,15 +145,41 @@ export function getAccountByName(name) {
     return null;
 }
 
-export function validateRegister() {
-    var first_name = document.getElementById('first-name').value;
-    var last_name = document.getElementById('last-name').value;
-    var full_name = first_name + ' ' + last_name;
-    var email = document.getElementById('email').value;
-    var password = document.getElementById('password').value;
-    var phone = document.getElementById('phone').value;
+export function removeAccount(account) {
+    var newAccounts = [];
+    for (var i = 0; i < accounts.length; i++) {
+        if (accounts[i].email != account.email) {
+            console.log(newAccounts);
+        }
+    }
+    if (newAccounts.length == accounts.length) {
+        return false;
+    }
+    accounts = newAccounts;
+    updateStorage();
+    return true;
+}
+
+export function validateRegister(fn, ln, em, pw, ph, test) {
+    if (test == true) {
+        var first_name = fn;
+        var last_name = ln;
+        var email = em;
+        var password = pw;
+        var phone = ph;
+        if (first_name == '' || last_name == '' || (email == '' || email.indexOf('@') == -1 || email.indexOf('.') == -1) || (password == '' && password.length < 8 && password.match(/[A-Z]/) == null && password.match(/[a-z]/) == null && password.match(/[0-9]/) == null && password.match(/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/) == null) || phone == '') {
+            return null;
+        }
+    } else {
+        var first_name = document.getElementById('first-name').value;
+        var last_name = document.getElementById('last-name').value;
+        var full_name = first_name + ' ' + last_name;
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        var phone = document.getElementById('phone').value; 
+    }
     var flag = 0;
-    if (getAccountByName(full_name) != null) {
+    if (getAccountByName(full_name) != null && test == undefined) {
         document.getElementById('description').innerHTML = 'An account with this information already exists.';
         document.getElementById('description').style.color = 'red';
         return false;
@@ -174,18 +201,15 @@ export function validateRegister() {
     } else { flag++; }
 
     if (flag == 5) {
-        new Account(first_name + ' ' + last_name, email, password, phone, [], [], 0, '', '', '', '', '', '');
-        window.location.href = 'login.html';
-        /*getAccount(email).then(function(doc) {
-            if (doc.error) {
-                storeAccount(first_name + ' ' + last_name, email, password, phone);
-                window.location.href = 'login.html';
-            } else {
-                document.getElementById('description').innerHTML = 'An account with this email already exists.';
-                document.getElementById('description').style.color = 'red';
-            }
-          });*/
+        let result = new Account(first_name + ' ' + last_name, email, password, phone, [], [], 0, '', '', '', '', '', '');
+        if (test == true) {
+            return result;
+        } else {
+            window.location.href = 'login.html';
+            return result;
+        }
     }
+    return null;
 }
 
 export function login() {
@@ -199,25 +223,6 @@ export function login() {
         document.getElementById('description').innerHTML = 'The credentials you entered are incorrect. Please try again.';
         document.getElementById('description').style.color = 'red';
     }
-    /*getAccount(email).then(function(doc) {
-        if (doc.error) {
-            document.getElementById('description').innerHTML = 'The credentials you entered are incorrect. Please try again.';
-        } else if (doc._id != email) {
-            document.getElementById('description').innerHTML = 'The credentials you entered are incorrect. Please try again.';
-            document.getElementById('description').style.color = 'red';
-        } else {
-            if (doc.password != password) {
-                document.getElementById('description').innerHTML = 'The credentials you entered are incorrect. Please try again.';
-                document.getElementById('description').style.color = 'red';
-            } else {
-                sessionStorage.setItem('name', doc.name);
-                retrieveObject(email);
-                window.location.href = 'account.html';
-            }
-        }
-      }).catch(function(err) {
-        console.error(err); // handle the error
-      });*/
 }
 
 export function isAuth(code) {
