@@ -59,7 +59,9 @@ window.onload = function () {
     account.receiveStorage();
     order.receiveStorage();
     cart.initiateCart();
-    runTests();
+    if (!window.location.href.includes('about.html')) {
+        runTests();
+    }
     if (!window.location.href.includes('payment')) {
         cart.onLoadCartNums();
     }
@@ -150,7 +152,7 @@ window.onload = function () {
             window.location.href = 'account.html';
         }
     }
-    if (sessionStorage.getItem('name') != null && !window.location.href.includes("payment.html")) {
+    if (sessionStorage.getItem('name') != null && !window.location.href.includes("payment")) {
         document.getElementById('account').innerHTML = sessionStorage.getItem('name');
         document.getElementById('region').innerHTML = "Logout";
         document.getElementById('region').addEventListener('click', function () {

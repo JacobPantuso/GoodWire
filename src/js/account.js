@@ -149,7 +149,7 @@ export function removeAccount(account) {
     var newAccounts = [];
     for (var i = 0; i < accounts.length; i++) {
         if (accounts[i].email != account.email) {
-            console.log(newAccounts);
+            newAccounts.push(accounts[i]);
         }
     }
     if (newAccounts.length == accounts.length) {
