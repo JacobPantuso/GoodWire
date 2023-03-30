@@ -88,7 +88,7 @@ window.onload = function () {
     }
 
     if (window.location.href.includes('products.html')) {
-        products.loadProducts();
+        products.loadProducts(false);
         let nums = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
         // if the product is in the cart, change the button to "Remove from Cart", 
         for (var i = 0; i < prodArray.length; i++) {

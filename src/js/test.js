@@ -48,7 +48,7 @@ export function runTests() {
     assert(test16, "account-obj", 16);
     var test17 = test16.changeAddress("350", "Victoria Street", "Toronto", "ON", "M5B1S1", "Canada");
     assert(test17, "350 Victoria Street, Toronto, ON, M5B1S1, Canada", 17);
-    var test18 = products.initiateProducts()
+    var test18 = products.initiateProducts(true)
     assert(test18.length, 18, 18);
     if (window.location.href.includes("products.html")) {
         var test19 = true;

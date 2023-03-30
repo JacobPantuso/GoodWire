@@ -60,6 +60,9 @@ export function removeProduct(product) {
 }
 
 export function initiateProducts() {
+  if (products.length != 0) {
+    return products;
+  }
   new Product("Apple iPhone 14",1,"phone", 1299, "iphone14.jpeg", 0);
   new Product("Samsung Galaxy S23",2,"phone", 999, "galaxy.jpeg", 0);
   new Product("Google Pixel 7",3,"phone", 999, "pixel7.jpeg", 0);
@@ -137,5 +140,4 @@ export function loadProducts() {
     productButton.id = "prod" + (i+1);
     productButton.innerHTML = "Add to Cart";
   }
-  return true;
 }
