@@ -46,4 +46,6 @@ GoodWire can be installed on any system but requires some way of rendering its c
 </ul>
 
 ### Quick Disclaimer
-This project is in no way <strong>stable</strong> or <strong>secure</strong> in any way. The purpose of this project was not to code a system, but to code it from a well-formatted software project management plan. Some code may not work at time or issues may arise unexpectedly during regular use. The way data is handled and manipulated is in an Object Oriented matter.
+This project is in no way <strong>stable</strong> or <strong>secure</strong> in any way. The purpose of this project was not to code a system, but to code it from a well-formatted software project management plan. Some code may not work at time or issues may arise unexpectedly during regular use. The way data is handled and manipulated is in an Object Oriented matter. Feel free to test the demo linked at the top of this ReadMe.
+
+<strong>NOTE:</strong> Payment forms will not process payments. We advise against providing any personal/sensitive information
