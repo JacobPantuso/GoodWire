@@ -38,7 +38,7 @@ The goal of this project was to effectively plan the design of the system before
   
 ### Installation
 <p>
-GoodWire can be installed on any system but requires some way of rendering its content on a webpage. One way of doing this is using <strong>Live Server for VSCode</strong>. Here are the three simple steps to deploying this project:</p>
+GoodWire can be installed on any system but requires some way of rendering its content on a webpage. One way of doing this is using <strong>Live Server for VSCode</strong>. It also is live on GitHub pages linked at the top of this file. Here are the three simple steps to deploying this project:</p>
 <ul>
   <li>1. Clone this repo to the directory of choice.</li>
   <li>2. Make sure you have <strong>Live Server</strong> or another web-deployment app enabled.</li>
