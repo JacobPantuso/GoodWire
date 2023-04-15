@@ -3,7 +3,10 @@
 </p>
 <summary align='center'><h1 align='center'>
   GoodWire
-</h1></summary>
+</h1>
+<p align='center'>
+Feel free to demo the UI <a href="https://www.jacobpantuso.ca/GoodWire/index.html">here</a>
+</p></summary>
 
 ## Table of Contents
 <ul>
